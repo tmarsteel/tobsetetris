@@ -6,7 +6,7 @@ html, body, * {
 }
 
 html, body {
-    background: url(../images/bg1.png);
+    background: url(../public/images/bg1.png);
 }
 
 div.container {

@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . '/src/default.inc.php');
+include(__DIR__ . '/../src/default.inc.php');
 
 use ttetris\Game;
 use ttetris\Brick;

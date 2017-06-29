@@ -1,5 +1,5 @@
 <?php
-include dirname(__FILE__) . '/src/default.inc.php';
+include dirname(__FILE__) . '/../src/default.inc.php';
 
 use sql\Database;
 use sql\Query;

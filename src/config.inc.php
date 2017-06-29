@@ -3,7 +3,7 @@ $_CONFIG=array (
     'database' => array (
         'host' => 'localhost',
         'user' => 'root',
-        'password' => 'idontwannastop!',
+        'password' => '',
         'base' => 'tetris'
     ),
     'logfile' => array (

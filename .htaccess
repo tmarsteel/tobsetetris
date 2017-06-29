@@ -1,7 +1,2 @@
 RewriteEngine On
-RewriteRule ^(scores(/\d+)?|keyconfig|credits)/?$ index.html
-RewriteRule ^game/start/?$ game.php?mode=start
-RewriteRule ^game/([a-f0-9]{32})/(turn|commit|pause)/?$ game.php?mode=$2&gid=$1
-RewriteRule ^highscore/?$ highscore.php
-RewriteRule ^inspectrng/?$ inspect.php
-RewriteRule ^inspectrng/(init|step)$ inspect.php?mode=$1 [QSA]
+RewriteRule ^/? public%{REQUEST_URI} [L]

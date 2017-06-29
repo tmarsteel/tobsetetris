@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="53px" height="53px">
+<g>
+<path fill="none" stroke-width="4" stroke="#cbcbcb" stroke-linecap="round" stroke-linejoin="round" d="M 18.5 20.5 C 21.3333 19.6667 24.1667 18.8333 27.5 20.5 C 30.8333 22.1667 34.6667 26.3333 38.5 30.5" />
+<polygon points="15,17 9,27 20,25" fill="#cbcbcb" />
+</g>
+</svg>

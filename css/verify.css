@@ -1,0 +1,56 @@
+html, body, * {
+    margin: 0;
+    padding: 0;
+    font-family: Ubuntu, Verdana, "Trebuchet MS", Arial, sans-serif;
+    outline: 0 none; /* tab focus is defined in the specific classes */
+}
+
+html, body {
+    background: url(../images/bg1.png);
+}
+
+div.container {
+    width: 75%;
+    max-width: 75%;
+    height: 75vh;
+    max-height: 75vh;
+    margin: 10vh 10vw 10vh 10vw;
+    padding: 2.5vh 2.5vw 2.5vh 2.5vw;
+    overflow: auto;
+    overflow-x: auto;
+    overflow-y: scroll;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#verifyScreen {
+    display: none;
+}
+
+#verifyTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+}
+
+#verifyTable td {
+    border: 1px solid #2a2a2a;
+    padding: .4em;
+}
+
+#verifyTable thead td {
+    font-weight: bold;
+    text-align: center;
+}
+
+#verifyTable td.verified {
+    background: #00A532;
+}
+
+#verifyTable td.error {
+    background: #E53918;
+}
+
+#verifyTable tbody td {
+    font-family: monospace;
+    text-align: right;
+}

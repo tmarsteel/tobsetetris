@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100px" height="100px">
+<g>
+<polygon points="83,49 62,61 62,37" fill="#ffffff" />
+<polygon points="62,43 62,55 39,52 39,47" fill="#ffffff" />
+<ellipse cx="29.5px" cy="49.5px" rx="6.5px" ry="6.5px" transform="translate(29.5,49.5) rotate(90.0002) translate(-29.5,-49.5)" fill="#ffffff" />
+</g>
+</svg>

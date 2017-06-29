@@ -1,0 +1,520 @@
+html, body, * {
+    margin: 0;
+    padding: 0;
+    font-family: Ubuntu, Verdana, "Trebuchet MS", Arial, sans-serif;
+    outline: 0 none; /* tab focus is defined in the specific classes */
+}
+
+html, body {
+    background: url(../images/bg1.png);
+}
+
+#main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -9.5em;
+    margin-left: -8em;
+    width: 16em;
+    height: 19em;
+}
+
+#gameinfo {
+    float: left;
+    height: 19em;
+    width: 5em;
+    padding: 0 0 0 1em;
+    margin: 0;
+}
+
+#gameinfo span.label {
+    font-size: 0.5em;
+}
+
+#points {
+    font-size: 115%;
+    width: 100%;
+    text-align: justify;
+    display: inline-block;
+}
+
+#options {
+    margin-top: .97em;
+}
+
+#options .option.boolean, .imgbutton {
+    display: inline-block;
+    border: 0.1em solid #2a2a2a;
+    border-radius: 0.2em;
+    cursor: pointer;
+    float: left;
+    margin-right: 0.2em;
+}
+
+#options .option.boolean {
+    width: 2.1em;
+    height: 2.1em;
+}
+
+#options .option.boolean.clear {
+    margin-right: 0;
+    clear: none;
+}
+#options .option.boolean.clear:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+#options .option.boolean:hover
+{
+    background-color: #EEE;
+}
+#options .option.boolean.disabled {
+    opacity: 0.3;
+}
+
+#options #button-mute {
+    background-image: url(../images/audio_unmuted.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 55% 55%;
+}
+
+#options #button-mute.disabled {
+    background-image: url(../images/audio_muted.svg);
+    background-size: 65% 65%;
+}
+
+#options #button-ghost .brick {
+    font-size: 50%;
+    margin: 0.6em auto 0 auto;
+    padding-left: 0.1em;
+}
+#options #button-ghost .brick .stone {
+    background: #2a2a2a;
+}
+
+#gamepanel {
+    width: 10em;
+    height: 19em;
+    padding: 0;
+    clear: both;
+    background: #555;
+    float: left;
+}
+#gamepanel .cell
+{
+    background: #555;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    float: left;
+    margin: 0;
+}
+
+#gamepanel .gamepanel-overlay
+{
+    position: absolute;
+    margin-left: 10.2em;
+    width: 10.2em;
+    height: 19em;
+    margin: 0;
+}
+
+#message-overlay .message
+{
+    width: 10em;
+    height: 19em;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+#message-overlay .message, #message-overlay .message * {
+    text-align: center;
+}
+
+#message-overlay .message a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 50%;
+    outline: 0 none !important;
+}
+
+#message-overlay .message a:hover {
+    text-decoration: underline;
+}
+
+#message-overlay .message h1 {
+    width: 100%;
+    font-size: 2.2em;
+    line-height: 1.1;
+}
+
+#message-overlay .message .content {
+    padding: 0 0.3em 0 0.3em;
+}
+
+
+/* GAME OVER */
+#message-overlay input[type="text"] {
+    width: 90%;
+    border: 0.1em solid white;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.2em;
+    font-size: 1.2em;
+    color: #ccc;
+}
+
+#message-overlay input.disabled {
+    background: #ccc;
+    border-color: #ccc;
+    color: #2a2a2a;
+}
+
+#message-overlay input[type="button"] {
+    padding: 0.2em 0.7em;
+    border: 0.1em solid #ccc;
+    background: none;
+    width: 80%;
+    color: #ccc;
+    font-size: 0.75em;
+    border-radius: 0.2em;
+    cursor: pointer;
+    margin: 0.1em;
+}
+
+#message-overlay input[type="button"]:focus {
+    border: .2em solid #FFF;
+    margin: 0;
+    color: #FFF;
+}
+
+/* HIGHSCORES */
+.highscores {
+    width: 100%;
+    min-height: 12em;
+    padding: 0 0.3em 0 0.3em;
+    box-sizing: border-box;
+}
+.highscores table {
+    font-size: 70%;
+    width: 100%;
+    padding: 0;
+    margin: .4em 0;
+}
+
+.highscores td, .highscores th {
+    text-align: left !important;
+    height: 1em;
+    padding: 0.15em;
+}
+
+.highscores table tr th:first-child {
+    width: 2em;
+}
+.highscores table tr th:last-child,
+.highscores table tr td:last-child {
+    width: 4em;
+    text-align: right !important;
+}
+
+.highscores table tr:nth-child(odd)
+{
+    background: #ccc;
+    color: #2a2a2a;
+    text-shadow: none;
+}
+
+.highscores tr.highlighted td {
+    background: #00ABEF;
+}
+
+.highscores + .imgbutton {
+    margin: 0 0.5em 0 0.3em;
+}
+
+#effect-overlay h1 {
+    width: 100%;
+    text-align: center;
+}
+
+#copyright {
+    position: absolute;
+    top: 100%;
+    right: 1em;
+    margin-top: -1.5em;
+    font-size: 40%;
+    color: #2a2a2a;
+}
+
+.graved, #effect-overlay h1, #message-overlay h1, #message-overlay p,
+#gameinfo span.label
+{
+    text-shadow: -1px -1px 1px #4a4a4a;
+    color: #DDD;
+}
+
+.brick-preview {
+    font-size: 70%;
+    display: block;
+    width: 5em;
+    height: 5em;
+    padding: 1em;
+    background: #555;
+    margin-bottom: 1.3em;
+}
+
+.brick-preview .brick-i, .brick-preview .brick-l, .brick-preview .brick-rl,
+.brick-preview .brick-t, .brick-preview .brick-z, .brick-preview .brick-s,
+.brick-preview .brick-square {
+    margin: 0 auto;
+}
+
+.brick-preview .brick-i {
+    margin-top: 0.5em;
+}
+
+.brick-preview .brick-l, .brick-preview .brick-rl {
+    margin-top: 1em;
+}
+.brick-preview .brick-t, .brick-preview .brick-z, .brick-preview .brick-s,
+.brick-preview .brick-square {
+    margin-top: 1.5em;
+}
+
+.brick.ghost {
+    opacity: 0.3;
+}
+
+.brick .stone {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    float: left;
+}
+/*.brick .stone, #gamepanel .cell
+{
+    background-size: contain;
+    background-repeat: no-repeat;
+}*/
+/*.brick.blue .stone, #gamepanel .cell.blue {
+    background-image: url(../images/stone_blue.png);
+}
+.brick.green .stone, #gamepanel .cell.green {
+    background-image: url(../images/stone_green.png);
+}
+.brick.magenta .stone, #gamepanel .cell.magenta {
+    background-image: url(../images/stone_magenta.png);
+}
+.brick.orange .stone, #gamepanel .cell.orange {
+    background-image: url(../images/stone_orange.png);
+}
+.brick.red .stone, #gamepanel .cell.red {
+    background-image: url(../images/stone_red.png);
+}
+.brick.turquoise .stone, #gamepanel .cell.turquoise {
+    background-image: url(../images/stone_turquoise.png);
+}
+.brick.yellow .stone, #gamepanel .cell.yellow {
+    background-image: url(../images/stone_yellow.png);
+}*/
+.brick.blue .stone, #gamepanel .cell.blue {
+    background-color: #005AF4;
+}
+.brick.green .stone, #gamepanel .cell.green {
+    background-color: #00D754;
+}
+.brick.magenta .stone, #gamepanel .cell.magenta {
+    background-color: #BD52BA;
+}
+.brick.orange .stone, #gamepanel .cell.orange {
+    background-color: #FF9A00;
+}
+.brick.red .stone, #gamepanel .cell.red {
+    background-color: #E53918;
+}
+.brick.turquoise .stone, #gamepanel .cell.turquoise {
+    background-color: #00ABEF;
+}
+.brick.yellow .stone, #gamepanel .cell.yellow {
+    background-color: #FBF000;
+}
+.brick .stone.hidden {
+    visibility: hidden;
+}
+
+#gamepanel .cell.pendingRemoval {
+    background-color: #EEE;
+}
+
+.imgbutton {
+    width: 1.2em;
+    height: 1.2em;
+    float: left;
+    border-color: #ccc;
+    cursor: pointer;
+    margin-left: .3em;
+}
+
+.imgbutton.replay {
+    background-image: url(../images/replay.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 80% 80%;
+}
+
+.imgbutton.showstart {
+    background-image: url(../images/home.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 67.5% 67.5%;
+}
+
+.imgbutton.nextpage {
+    background-image: url(../images/nextpage.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 120% 120%;
+}
+
+.imgbutton.prevpage {
+    background-image: url(../images/prevpage.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+
+input[type="button"] + .imgbutton {
+    display: inline-block;
+    margin: 0 0 0 0.8em;
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
+/* START SCREEN */
+#control-scheme-switcher {
+	border: 0.1em solid white;
+	border-radius: 0.2em;
+	height: 1em;
+	width: 70%;
+	margin: 0.75em auto;
+}
+
+#control-scheme-switcher span {
+	font-size: 0.5em;
+	display: block;
+	float: left;
+	width: 33.3%;
+	height: 2em;
+	line-height: 2em;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#control-scheme-switcher span.selected {
+	background: white;
+	color: #2a2a2a;
+	cursor: default;
+}
+
+.control-scheme {
+	clear: both;
+	display: none;
+}
+
+.control-scheme.selected {
+	display: block;
+}
+
+.control-info {
+    display: inline-block;
+    width: 4em;
+}
+
+.key, .control-info .swipe {
+    width: 1.3em;
+    height: 1.3em;
+    display: inline-block;
+    border: 0.1em solid white;
+    border-radius: 0.2em;
+    background-size: 70% 70%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.swipe {
+    border: none;
+    margin: 0.1em;
+    background-size: 100%;
+}
+
+.key.down {
+    background-image: url(../images/arrow_down.svg);
+}
+.key.up {
+    background-image: url(../images/arrow_up.svg);
+}
+.key.left {
+    background-image: url(../images/arrow_left.svg);
+}
+.key.right {
+    background-image: url(../images/arrow_right.svg);
+}
+.key.space {
+    width: 2.6em;
+    background-image: url(../images/space.svg);
+}
+.key.esc span {
+    font-size: 50%;
+    color: white;
+    margin-top: 0.8em;
+}
+.swipe.swipe-up {
+    background-image: url(../images/swipe-up.svg);
+}
+.swipe.swipe-down {
+    background-image: url(../images/swipe-down.svg);
+}
+.swipe.swipe-left {
+    background-image: url(../images/swipe-left.svg);
+}
+.swipe.swipe-right {
+    background-image: url(../images/swipe-right.svg);
+}
+.swipe.swipe-pinch-out {
+    background-image: url(../images/pinch-out.svg);
+}
+.swipe.swipe-pinch-in {
+    background-image: url(../images/pinch-in.svg);
+}
+
+.control-info span {
+    font-size: 50%;
+    color: #ccc;
+    display: block;
+}
+
+.template {
+    display: none;
+}
+
+.credits {
+    font-size: .5em;
+}
+
+.credits a {
+    font-size: 100% !important;
+    color: #FFF !important;
+    text-decoration: underline !important;
+}
+
+.credits a[href]:focus {
+    color: #00ABEF !important;
+}
+
+.credits input[type="button"] {
+    font-size: 1.5em !important;
+}

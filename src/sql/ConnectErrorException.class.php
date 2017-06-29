@@ -1,5 +1,5 @@
 <?php
-namespace cryptmail\sql;
+namespace sql;
 
 class ConnectErrorException extends MySqlException
 {

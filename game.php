@@ -1,14 +1,14 @@
 <?php
-include(__DIR__ . '/inc/default.inc.php');
+include(__DIR__ . '/src/default.inc.php');
 
 use ttetris\Game;
 use ttetris\Brick;
 use ttetris\DPRNG;
 use ttetris\BrickSequenceGenerator;
-use cryptmail\sql\Database;
-use cryptmail\sql\Query;
-use cryptmail\util\json\JSONArray;
-use cryptmail\util\json\JSONObject;
+use sql\Database;
+use sql\Query;
+use util\json\JSONArray;
+use util\json\JSONObject;
 
 session_start();
 

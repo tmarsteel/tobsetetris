@@ -1,6 +1,5 @@
 <?php
-namespace cryptmail\sql;
-include_once(dirname(__FILE__)."/MySqlException.class.php");
+namespace sql;
 
 class MySqlQueryException extends MySqlException {
 

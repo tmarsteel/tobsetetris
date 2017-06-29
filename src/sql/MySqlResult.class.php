@@ -1,5 +1,5 @@
 <?php
-namespace cryptmail\sql;
+namespace sql;
 
 /**
  * @author Tobias Marstalelr

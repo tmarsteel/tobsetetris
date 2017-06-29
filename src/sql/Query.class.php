@@ -1,10 +1,10 @@
 <?php
 
-namespace cryptmail\sql;
+namespace sql;
 
-use cryptmail\core\Logfile;
-use cryptmail\general\ArgumentException;
-use cryptmail\core\registry\Registry;
+use logging\Logfile;
+use ArgumentException;
+use registry\Registry;
 
 /**
  * @author Tobias Marstaller

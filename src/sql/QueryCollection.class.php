@@ -1,12 +1,12 @@
 <?php
-namespace cryptmail\sql;
+namespace sql;
 
 final class QueryCollection
 {
     /**
      * @deprecated
      * @param type $id
-     * @return \cryptmail\sql\Query
+     * @return \sql\Query
      * @throws MySqlException
      */
 	public static function getQuery($id)

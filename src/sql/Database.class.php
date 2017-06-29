@@ -1,8 +1,7 @@
 <?php
-namespace cryptmail\sql;
+namespace sql;
 
-use \cryptmail\core\registry\Registry;
-use \mysqli;
+use registry\Registry;
 
 /**
  * @author Tobias Marstaller

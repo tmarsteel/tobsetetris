@@ -1,6 +1,6 @@
 <?php
 session_start();
-include dirname(__FILE__).'/inc/default.inc.php';
+include dirname(__FILE__) . '/src/default.inc.php';
 
 use ttetris\DPRNG;
 use ttetris\BrickSequenceGenerator;

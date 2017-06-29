@@ -1,5 +1,5 @@
 <?php
-namespace cryptmail\util\json;
+namespace util\json;
 
 /**
  * Created on 09.08.2012

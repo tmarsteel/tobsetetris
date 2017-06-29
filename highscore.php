@@ -1,10 +1,9 @@
 <?php
-include dirname(__FILE__).'/inc/default.inc.php';
+include dirname(__FILE__) . '/src/default.inc.php';
 
-use cryptmail\sql\Database;
-use cryptmail\sql\Query;
-use cryptmail\util\json\JSONArray;
-use cryptmail\util\json\JSONObject;
+use sql\Database;
+use sql\Query;
+use util\json\JSONArray;
 
 try
 {

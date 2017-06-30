@@ -74,6 +74,7 @@ catch (Exception $ex)
     <head>
         <title>TETIRS - Test DPRNG Issues</title>
         <script type="text/javascript" src="js/libs/jquery.js"></script>
+        <script type="text/javascript" src="js/utils.js"></script>
         <script type="text/javascript" src="js/bricks.js"></script>
         <script type="text/javascript" src="js/verify.js"></script>
         <link href="css/verify.css" rel="stylesheet" />

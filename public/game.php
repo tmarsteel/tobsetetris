@@ -54,11 +54,16 @@ switch ($mode)
         {
             $now = millitime();
 
-            if ($now - $gameData["lastAction"] > 16000)
+            // the client sends the current turns at least every 10 seconds,
+            // as long as there are turns to submit
+            // the game field is 19 blocks high; each tick takes at most 750ms
+            // therefore, it can take at most 14.25 seconds for a brick to drop
+            // add to that the 10 second sync delay -> 24.5 seconds
+            // we should also account for network delays of about 4 seconds
+            // => 30 seconds between two submits are accepted
+
+            if ($now - $gameData["lastAction"] > 30000)
             {
-                // the game field is 19 blocks high; each tick takes at most 750ms
-                // therefore, there are at most 14.25 seconds between to actions
-                // 16 seconds are accepted due to network issues
                 header("HTTP/1.1 400 Bad Request");
                 header("Content-Type: application/json");
                 echo json_encode(array(

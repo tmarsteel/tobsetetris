@@ -164,14 +164,19 @@ switch ($mode)
         }
         
         $gameData = unserialize($_SESSION["games"][$gameID]);
-        
+
+        $now = millitime();
+
         if ($gameData["lastAction"] == null)
         {
-            $gameData["lastAction"] = millitime();
+            $gameData["lastAction"] = $now;
+            $gameData["playingSince"] = $now;
         }
         else
         {
             $gameData["lastAction"] = null;
+            $gameData["gameTimeAccumulator"] += $now - $gameData["playingSince"];
+            $gameData["playingSince"] = null;
         }
         
         header("Content-Type: application/json");
@@ -191,8 +196,13 @@ switch ($mode)
             ));
             exit;
         }
-        
+
+        $now = millitime();
+
         $gameData = unserialize($_SESSION["games"][$gameID]);
+
+        $gameData["gameTimeAccumulator"] += $now - $gameData["playingSince"];
+
         unset($_SESSION["games"][$gameID]);
         
         $points = $gameData["instance"]->getCurrentScore();

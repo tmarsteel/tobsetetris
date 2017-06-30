@@ -103,7 +103,13 @@ switch ($mode)
                 if ($submittedType != $expectedType)
                 {
                     // log the error
-                    file_put_contents("desync.log", "[" . date("Y-m-d H:i:s") . "] Game brick #" . $gameData["nPlacedBricks"] . ", submitted brick #" . $nTurn . "; submitted type = " . $submittedType . "; exptected type = " . $expectedType . "; salt = " . $gameData["bsSalt"] . "\n", FILE_APPEND);
+                    file_put_contents(
+                        "desync.log", "[" . date("Y-m-d H:i:s") . "] Game brick by server #" . $gameData["nPlacedBricks"] .
+                            " by client #" . $_POST["brickGameIndex" . $nTurn] . ", submitted brick #" . $nTurn .
+                            "; submitted type = " . $submittedType . "; exptected type = " . $expectedType .
+                            "; salt = " . $gameData["bsSalt"] . "\n",
+                        FILE_APPEND
+                    );
                     
                     // cancel the turn
                     throw new \Exception("Brick sequence out of sync in turn " . 

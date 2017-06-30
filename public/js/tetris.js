@@ -534,7 +534,13 @@ function GAME_OVER()
     window.clearTimeout(FALLING_TIMEOUT);
     CURRENT_FALLING_BRICK = null;
     updateUI(GMATRIX);
-    
+
+    // pause the game server-side so that the time counter does not count the time it takes
+    // the user to enter his name and submit the form
+    $.ajax({
+        url: '/game/' + CURRENT_GAME_ID + '/pause'
+    });
+
     // construct the submit-screen
     showMessage('GAME OVER', $("#template-submit").html());
     

@@ -27,6 +27,7 @@ switch ($mode)
         $gameData["playingSince"] = millitime(); // time since game start or since last resume; is null during pause
         $gameData["gameTimeAccumulator"] = 0; // counts the milliseconds that have been played, excluding seconds
                                               // is updated using playingSince every pause and with the final commit
+        $gameData["nPlacedBricks"] = 0;       // counts the number of placed bricks
         
         $_SESSION["games"][$gameData["instance"]->getID()] = serialize($gameData);
         
@@ -50,13 +51,13 @@ switch ($mode)
             exit;
         }
         
-        $gameData = unserialize($_SESSION["games"][$gameID]);  
-        
+        $gameData = unserialize($_SESSION["games"][$gameID]);
+
+        $now = millitime();
+
         // pause => null => ignore
         if ($gameData["lastAction"] != null)
         {
-            $now = millitime();
-
             // the client sends the current turns at least every 10 seconds,
             // as long as there are turns to submit
             // the game field is 19 blocks high; each tick takes at most 750ms
@@ -102,7 +103,7 @@ switch ($mode)
                 if ($submittedType != $expectedType)
                 {
                     // log the error
-                    file_put_contents("desync.log", "[" . date("Y-m-d H:i:s") . "] Submitted turn #" . $nTurn . "; submitted type = " . $submittedType . "; exptected type = " . $expectedType . "; salt = " . $gameData["bsSalt"] . "\n", FILE_APPEND);
+                    file_put_contents("desync.log", "[" . date("Y-m-d H:i:s") . "] Game brick #" . $gameData["nPlacedBricks"] . ", submitted brick #" . $nTurn . "; submitted type = " . $submittedType . "; exptected type = " . $expectedType . "; salt = " . $gameData["bsSalt"] . "\n", FILE_APPEND);
                     
                     // cancel the turn
                     throw new \Exception("Brick sequence out of sync in turn " . 
@@ -117,6 +118,7 @@ switch ($mode)
                 $brick->setRotation((int) $_POST["brickRotation" . $nTurn]);   
                 
                 $game->onBrickPlaced($brick);
+                $gameData["nPlacedBricks"]++;
             }
         }
         catch (\ttetris\CollisionException $ex)

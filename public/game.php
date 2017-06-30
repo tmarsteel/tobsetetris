@@ -24,6 +24,9 @@ switch ($mode)
         $gameData["bsSalt"] = $rng->getInitialSalt();
         $gameData["bsg"] = new BrickSequenceGenerator($rng);
         $gameData["lastAction"] = millitime(); // is set to null in the "pause" block
+        $gameData["playingSince"] = millitime(); // time since game start or since last resume; is null during pause
+        $gameData["gameTimeAccumulator"] = 0; // counts the milliseconds that have been played, excluding seconds
+                                              // is updated using playingSince every pause and with the final commit
         
         $_SESSION["games"][$gameData["instance"]->getID()] = serialize($gameData);
         
@@ -93,20 +96,21 @@ switch ($mode)
                     break;
                 }
 
-                $type = $gameData["bsg"]->nextType();
-                
-                if ($type != $_POST["brickType" . $nTurn])
+                $expectedType = $gameData["bsg"]->nextType();
+                $submittedType = $_POST["brickType" . $nTurn];
+
+                if ($submittedType != $expectedType)
                 {
                     // log the error
-                    file_put_contents("desync.log", "Desync with salt " . $gameData["bsSalt"] . "\n", FILE_APPEND);
+                    file_put_contents("desync.log", "[" . date("Y-m-d H:i:s") . "] Submitted turn #" . $nTurn . "; submitted type = " . $submittedType . "; exptected type = " . $expectedType . "; salt = " . $gameData["bsSalt"] . "\n", FILE_APPEND);
                     
                     // cancel the turn
                     throw new \Exception("Brick sequence out of sync in turn " . 
                         $nTurn . ": client placed " . $_POST["brickType" . $nTurn] .
-                        " but should have placed " . $type);
+                        " but should have placed " . $expectedType);
                 }
                 
-                $brick = Brick::getInstance($type);
+                $brick = Brick::getInstance($expectedType);
 
                 $brick->setPositionX((int) $_POST["brickX" . $nTurn]);
                 $brick->setPositionY((int) $_POST["brickY" . $nTurn]);

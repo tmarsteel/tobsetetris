@@ -67,6 +67,10 @@ switch ($mode)
                 exit;
             }
         }
+        else {
+            // resume was not called? assume this is the resume
+            $gameData["lastAction"] = millitime();
+        }
         
         /** @var Game $game */ 
         $game = $gameData["instance"];

@@ -590,11 +590,11 @@ function PAUSE()
 
         AUDIO.THEME.pause();
         showMessage("PAUSE", "The game is paused. Resume with <div class='key "+
-            getActionUIRepresentation(ACTION.PAUSE_RESUME) + "'><span>" + 
+            getActionUIRepresentation(ACTION.PAUSE_RESUME) + "'><span>" +
             getActionUIRepresentation(ACTION.PAUSE_RESUME).toUpperCase() + '</span></key>'
         );
         document.title = "Tetris - PAUSED";
-        
+
         // tell the server!
         $.ajax({
             url: '/game/' + CURRENT_GAME_ID + '/pause'
@@ -611,6 +611,10 @@ function RESUME()
     AUDIO.THEME.play();
     
     PAUSED = false;
+
+    $.ajax({
+        url: '/game/' + CURRENT_GAME_ID + '/pause'
+    });
 	
     if (CURRENT_FALLING_BRICK == null)
     {

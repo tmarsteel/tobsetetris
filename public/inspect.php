@@ -73,10 +73,10 @@ catch (Exception $ex)
 <html>
     <head>
         <title>TETIRS - Test DPRNG Issues</title>
-        <script type="text/javascript" src="/public/js/libs/jquery.js"></script>
-        <script type="text/javascript" src="/public/js/bricks.js"></script>
-        <script type="text/javascript" src="/public/js/verify.js"></script>
-        <link href="/public/css/verify.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/libs/jquery.js"></script>
+        <script type="text/javascript" src="js/bricks.js"></script>
+        <script type="text/javascript" src="js/verify.js"></script>
+        <link href="css/verify.css" rel="stylesheet" />
     </head>
     <body>
         <div id="initScreen" class="container">

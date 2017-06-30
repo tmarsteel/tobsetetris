@@ -1103,6 +1103,11 @@ function syncTurnQueue()
     // start the server-sync job
     var syncPeriod = 10000; // sync every x milliseconds
     var syncFn = function() {
+        if (PAUSED) {
+            window.setTimeout(syncFn, syncPeriod);
+            return;
+        }
+
         var startedAt = (new Date()).getTime();
         syncTurnQueue().then(function(points) {
             if (!TURN_QUEUE.hasItems())

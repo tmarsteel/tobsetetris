@@ -534,20 +534,34 @@ function GAME_OVER()
     CURRENT_FALLING_BRICK = null;
     updateUI(GMATRIX);
 
+    // sync all the turns that are left and then
     // pause the game server-side so that the time counter does not count the time it takes
     // the user to enter his name and submit the form
-    $.ajax({
-        url: '/game/' + CURRENT_GAME_ID + '/pause'
+    var turnsSyncedAndGamePaused = syncTurnQueue().then(function() {
+        return new Promise(function(resolve, reject) {
+            $.ajax({
+                url: '/game/' + CURRENT_GAME_ID + '/pause',
+                complete: resolve
+            });
+        });
     });
 
     // construct the submit-screen
     showMessage('GAME OVER', $("#template-submit").html());
-    
+
+    // game-over!
+    $("#effect-overlay").css("display", "none");
+
+    // focus the name input field
+    $("#message-overlay input:first-of-type").focus();
+
+    // register submit handler
     $("#message-overlay .submit-button").click(function() {
         var $input = $(this).parent().find('input[type="text"]');
         $input.prop("disabled", true).addClass("disabled");
-        
-        var onSubmitFn = function() {
+
+        // do the commit only after the turns have been synced.
+        turnsSyncedAndGamePaused.then(function() {
             $.ajax({
                 url: "/game/" + CURRENT_GAME_ID + "/commit",
                 type: "POST",
@@ -557,7 +571,6 @@ function GAME_OVER()
                 },
                 success: function(data)
                 {
-                    console.log(data);
                     showHighscores(data);
                 },
                 error: function(req)
@@ -565,24 +578,8 @@ function GAME_OVER()
                     SERVER_ERROR("0x02");
                 }
             });
-        };
-        
-        if (TURN_QUEUE.hasItems())
-        {
-            // submit the rest of the turns and then commit the game
-            syncTurnQueue().then(onSubmitFn);
-        }
-        else
-        {
-            // no more turns to be submitted => fine
-            onSubmitFn();
-        }
+        });
     });
-
-    // game-over!
-    $("#effect-overlay").css("display", "none");
-    
-    $("#message-overlay input:first-of-type").focus();
 }
 
 function PAUSE()

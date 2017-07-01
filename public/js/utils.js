@@ -111,10 +111,12 @@ var TransactionQueue = function() {
     this.pushItem = function(item) {
         if (currentTransactionPromise != null)
         {
+            console.log("Adding item WITHIN transaction: %o", item);
             queuedDuringTransaction.push(item);
         }
         else
         {
+            console.log("Adding item OUTSIDE OF transaction: %o", item);
             items.push(item);
         }
     };
@@ -122,6 +124,7 @@ var TransactionQueue = function() {
     this.consume = function(nItems, callback) {
         if (currentTransactionPromise != null)
         {
+            console.log("--> Consume invoked during running consume -> delaying...");
             return ~function(nItems, callback) {
                 return currentTransactionPromise.then(function() {
                     return _self.consume(nItems, callback);
@@ -131,6 +134,8 @@ var TransactionQueue = function() {
         else
         {
             ~function(transactionItems, callback) {
+                console.log("--> Consuming %o", transactionItems);
+
                 currentTransactionPromise = new Promise(function(resolve, reject) {
                     if (transactionItems.length == 0)
                         resolve();
@@ -142,12 +147,14 @@ var TransactionQueue = function() {
                     if (queuedDuringTransaction.length != 0)
                     {
                         items = items.concat(queuedDuringTransaction);
+                        queuedDuringTransaction = [];
                     }
                     
                     currentTransactionPromise = null;
                 }, function() {
                     // put things back into order
                     items = items.concat(transactionItems).concat(queuedDuringTransaction);
+                    queuedDuringTransaction = [];
                     
                     currentTransactionPromise = null;
                 });

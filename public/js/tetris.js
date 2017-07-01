@@ -13,8 +13,6 @@ var EM1 = 12,
     CURRENT_GAME_ID = null,
     // Game turns to be submitted to the server
     TURN_QUEUE = new TransactionQueue(),
-    // counts the index of the brick in this game
-    N_PLACED_BRICKS = 0,
     // Current BrickSequenceGenerator
     BRICK_SEQUENCE_GENERATOR = null,
     // timeout-reference for the current brick interval
@@ -75,10 +73,7 @@ function applyBrick(brick, GMATRIX)
             nextBrick();
 
             // queue this turn to be submitted to the server
-            brick.indexInGame = N_PLACED_BRICKS;
             TURN_QUEUE.pushItem(brick);
-
-            N_PLACED_BRICKS++;
         }
     });
 
@@ -1055,7 +1050,6 @@ function syncTurnQueue()
                 postData["brickX" + i] = brick.getPosition().x;
                 postData["brickY" + i] = brick.getPosition().y;
                 postData["brickRotation" + i] = brick.getRotation() * 90;
-                postData["brickGameIndex" + i] = brick.indexInGame;
             }
 
             $.ajax({

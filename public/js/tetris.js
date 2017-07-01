@@ -219,7 +219,7 @@ function updateUI(GMATRIX)
 function updateGhost(forBrick, GMATRIX)
 {
     $("#ghost-overlay").html("");
-    if (!SHOW_GHOST)
+    if (!SHOW_GHOST || !forBrick)
     {
         return;
     }

@@ -28,6 +28,7 @@ switch ($mode)
         $gameData["gameTimeAccumulator"] = 0; // counts the milliseconds that have been played, excluding seconds
                                               // is updated using playingSince every pause and with the final commit
         $gameData["nPlacedBricks"] = 0;       // counts the number of placed bricks
+        $gameData["brickHistory"] = []; // holds the type of every brick placed, used for desync debugging
         
         $_SESSION["games"][$gameData["instance"]->getID()] = serialize($gameData);
         
@@ -107,7 +108,8 @@ switch ($mode)
                         "desync.log", "[" . date("Y-m-d H:i:s") . "] Game brick by server #" . $gameData["nPlacedBricks"] .
                             " by client #" . $_POST["brickGameIndex" . $nTurn] . ", submitted brick #" . $nTurn .
                             "; submitted type = " . $submittedType . "; exptected type = " . $expectedType .
-                            "; salt = " . $gameData["bsSalt"] . "\n",
+                            "; salt = " . $gameData["bsSalt"] . "\n" .
+                            "    brick history until now: " . print_r($gameData["brickHistory"], true) . "\n",
                         FILE_APPEND
                     );
                     
@@ -125,6 +127,7 @@ switch ($mode)
                 
                 $game->onBrickPlaced($brick);
                 $gameData["nPlacedBricks"]++;
+                $gameData["brickHistory"] []= $expectedType;
             }
         }
         catch (\ttetris\CollisionException $ex)

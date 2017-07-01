@@ -59,6 +59,7 @@ function applyBrick(brick, GMATRIX)
     brick.applyTo(GMATRIX);
             
     updateUI(GMATRIX);
+    var isGameOver = false;
     var removedLines = removeFullLines(function() {
         updateUI(GMATRIX);
 
@@ -66,6 +67,7 @@ function applyBrick(brick, GMATRIX)
          || (brick.getPosition().y == 0 && brick.collides(GMATRIX)))
         {
             GAME_OVER();
+            isGameOver = true;
         }
         else
         {
@@ -76,6 +78,9 @@ function applyBrick(brick, GMATRIX)
             TURN_QUEUE.pushItem(brick);
         }
     });
+
+    // if this brick ends the game, don't count it as an additional point
+    if (isGameOver) return;
 
     var additionalPoints;
 

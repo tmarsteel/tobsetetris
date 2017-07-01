@@ -127,7 +127,7 @@ switch ($mode)
                 
                 $game->onBrickPlaced($brick);
                 $gameData["nPlacedBricks"]++;
-                $gameData["brickHistory"] []= $expectedType;
+                $gameData["brickHistory"] []= strToUpper($expectedType);
             }
         }
         catch (\ttetris\CollisionException $ex)

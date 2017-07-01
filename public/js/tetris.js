@@ -737,78 +737,66 @@ function removeRow(GMATRIX, row, callback)
 function executeUserAction(action) {
 	if (CURRENT_FALLING_BRICK == null)
 	{
-            return;
+        return;
 	}
 
 	if (action == ACTION.HARD_DROP)
 	{
-            window.clearInterval(FALLING_TIMEOUT);
+        window.clearInterval(FALLING_TIMEOUT);
 
-            // how long will it fall?
-            do
-            {
-                    CURRENT_FALLING_BRICK.moveDown(1);
-            }
-            while (!CURRENT_FALLING_BRICK.collides(GMATRIX));
-            CURRENT_FALLING_BRICK.moveUp(1);
+        // how long will it fall?
+        do
+        {
+                CURRENT_FALLING_BRICK.moveDown(1);
+        }
+        while (!CURRENT_FALLING_BRICK.collides(GMATRIX));
+        CURRENT_FALLING_BRICK.moveUp(1);
 
-            applyBrick(CURRENT_FALLING_BRICK, GMATRIX);
+        applyBrick(CURRENT_FALLING_BRICK, GMATRIX);
 	}
 	else if (action == ACTION.MOVE_LEFT)
 	{
-            CURRENT_FALLING_BRICK.tryMoveLeft(1, GMATRIX);
+        CURRENT_FALLING_BRICK.tryMoveLeft(1, GMATRIX);
 	}
 	else if (action == ACTION.MOVE_RIGHT)
 	{
-            CURRENT_FALLING_BRICK.tryMoveRight(1, GMATRIX);
+        CURRENT_FALLING_BRICK.tryMoveRight(1, GMATRIX);
 	}
 	else if (action == ACTION.SOFT_DROP)
 	{
-            CURRENT_FALLING_BRICK.tryMoveDown(1, GMATRIX);
+        CURRENT_FALLING_BRICK.tryMoveDown(1, GMATRIX);
 	}
 	else if (action == ACTION.ROTATE_RIGHT || action == ACTION.ROTATE_LEFT)
 	{
-            if (action == ACTION.ROTATE_RIGHT)
-            {
-                CURRENT_FALLING_BRICK.rotateRight();
-            }
-            else
-            {
-                CURRENT_FALLING_BRICK.rotateLeft();
-            }
+        if (action == ACTION.ROTATE_RIGHT)
+        {
+            CURRENT_FALLING_BRICK.rotateRight();
+        }
+        else
+        {
+            CURRENT_FALLING_BRICK.rotateLeft();
+        }
 
-            // check whether the block hits the right edge
-            if (CURRENT_FALLING_BRICK.getPosition().x + CURRENT_FALLING_BRICK.getWidth() > WIDTH)
-            {
-                var blocksMovedLeft = 0;
-                
-                do
-                {
-                    CURRENT_FALLING_BRICK.moveLeft(1);
-                    blocksMovedLeft++;
-                }
-                while (CURRENT_FALLING_BRICK.getPosition().x + CURRENT_FALLING_BRICK.getWidth() > WIDTH);
+        // check whether the block hits the right edge
+        if (CURRENT_FALLING_BRICK.getPosition().x + CURRENT_FALLING_BRICK.getWidth() > WIDTH)
+        {
+            var blocksMovedLeft = 0;
 
-                if (CURRENT_FALLING_BRICK.collides(GMATRIX))
-                { // rotate not possible, rewind
-                    
-                    if (blocksMovedLeft > 0)
-                    {
-                        CURRENT_FALLING_BRICK.moveRight(blocksMovedLeft);
-                    }
-                    
-                    if (action == ACTION.ROTATE_RIGHT)
-                    {
-                        CURRENT_FALLING_BRICK.rotateLeft();
-                    }
-                    else
-                    {
-                        CURRENT_FALLING_BRICK.rotateRight();
-                    }
-                }
+            do
+            {
+                CURRENT_FALLING_BRICK.moveLeft(1);
+                blocksMovedLeft++;
             }
-            else if (CURRENT_FALLING_BRICK.collides(GMATRIX))
+            while (CURRENT_FALLING_BRICK.getPosition().x + CURRENT_FALLING_BRICK.getWidth() > WIDTH);
+
+            if (CURRENT_FALLING_BRICK.collides(GMATRIX))
             { // rotate not possible, rewind
+
+                if (blocksMovedLeft > 0)
+                {
+                    CURRENT_FALLING_BRICK.moveRight(blocksMovedLeft);
+                }
+
                 if (action == ACTION.ROTATE_RIGHT)
                 {
                     CURRENT_FALLING_BRICK.rotateLeft();
@@ -818,17 +806,29 @@ function executeUserAction(action) {
                     CURRENT_FALLING_BRICK.rotateRight();
                 }
             }
-	}
-	else if (action == ACTION.PAUSE_RESUME)
-	{
-            if (FALLING_TIMEOUT == null)
+        }
+        else if (CURRENT_FALLING_BRICK.collides(GMATRIX))
+        { // rotate not possible, rewind
+            if (action == ACTION.ROTATE_RIGHT)
             {
-                RESUME();
+                CURRENT_FALLING_BRICK.rotateLeft();
             }
             else
             {
-                PAUSE();
+                CURRENT_FALLING_BRICK.rotateRight();
             }
+        }
+	}
+	else if (action == ACTION.PAUSE_RESUME)
+	{
+        if (FALLING_TIMEOUT == null)
+        {
+            RESUME();
+        }
+        else
+        {
+            PAUSE();
+        }
 	}
 	
 	updateGhost(CURRENT_FALLING_BRICK, GMATRIX);

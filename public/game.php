@@ -109,10 +109,10 @@ switch ($mode)
                             " by client #" . $_POST["brickGameIndex" . $nTurn] . ", submitted brick #" . $nTurn .
                             "; submitted type = " . $submittedType . "; exptected type = " . $expectedType .
                             "; salt = " . $gameData["bsSalt"] . "\n" .
-                            "    brick history until now: " . print_r($gameData["brickHistory"], true) . "\n",
+                            "    brick history until now: " . implode(", ", $gameData["brickHistory"]) . "\n",
                         FILE_APPEND
                     );
-                    
+
                     // cancel the turn
                     throw new \Exception("Brick sequence out of sync in turn " . 
                         $nTurn . ": client placed " . $_POST["brickType" . $nTurn] .

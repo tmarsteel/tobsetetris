@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+include_once(dirname(__FILE__) . '/../src/default.inc.php');
+$webroot = $_CONFIG["webroot"];
+?><!DOCTYPE html>
 <html>
     <head>
         <title>Tetris</title>
@@ -7,24 +10,24 @@
         
         <meta name="keywords" content="tetris html5 online free play" />
         <meta name="description" content="Play a HTML5-Tetris online and free!">
-        
-        <script type="text/javascript" src="js/libs/jquery.js"></script>
-        <script type="text/javascript" src="js/libs/jquery.easing.js"></script>
-        <script type="text/javascript" src="js/libs/jquery.settings.js"></script>
-        <script type="text/javascript" src="js/libs/jquery.touchSwipe.min.js"></script>
-        <script type="text/javascript" src="js/libs/keyconfig.js"></script>
-        <script type="text/javascript" src="js/utils.js?1498910099"></script>
-        <script type="text/javascript" src="js/bricks.js?1498910099"></script>
-        <script type="text/javascript" src="js/tetris.js?1498910099"></script>
+
+        <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.js"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.easing.js"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.settings.js"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.touchSwipe.min.js"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/libs/keyconfig.js"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/utils.js?1498910099"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/bricks.js?1498910099"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/tetris.js?1498910099"></script>
         
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:400' rel='stylesheet' type='text/css'>
-        <link href="css/styles.css" type="text/css" rel="stylesheet" media="screen" />
-        <link href="favicon.png" rel="shortcut icon" type="image/png" />
+        <link href="<?=$webroot;?>css/styles.css" type="text/css" rel="stylesheet" media="screen" />
+        <link href="<?=$webroot;?>favicon.png" rel="shortcut icon" type="image/png" />
     </head>
     <body>
         <audio id="audio-theme" muted autoplay loop>
-            <source src="res/tetris.mp3" type="audio/mp3" />
-            <source src="res/tetris.ogg" type="audio/ogg" />
+            <source src="<?=$webroot;?>res/tetris.mp3" type="audio/mp3" />
+            <source src="<?=$webroot;?>res/tetris.ogg" type="audio/ogg" />
         </audio>
         <div id="main">
             <div id="gamepanel">

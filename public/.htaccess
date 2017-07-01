@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteRule ^(scores(/\d+)?|keyconfig|credits)/?$ index.html
+RewriteRule ^(scores(/\d+)?|keyconfig|credits)/?$ index.php
 RewriteRule ^game/start/?$ game.php?mode=start
 RewriteRule ^game/([a-f0-9]{32})/(turn|commit|pause)/?$ game.php?mode=$2&gid=$1
 RewriteRule ^highscore/?$ highscore.php

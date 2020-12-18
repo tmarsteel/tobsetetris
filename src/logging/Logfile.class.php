@@ -20,7 +20,7 @@ abstract class Logfile
 	{
         if ($stamp == null)
 		{
-			$stamp = time();
+			$stamp = \time();
 		}
         return "[".date("D M d Y, H:i:s", $stamp)."]";
     }
@@ -29,18 +29,18 @@ abstract class Logfile
         global $_CONFIG;
 
         $logfile = $_CONFIG["logfile"]["error"];
-        $logfileDir = dirname($logfile);
-        if (!file_exists($logfileDir)) {
-            mkdir($logfileDir, 0750, true);
+        $logfileDir = \dirname($logfile);
+        if (!\file_exists($logfileDir)) {
+            \mkdir($logfileDir, 0750, true);
         }
 
-        $fp=fopen($logfile, "a+");
+        $fp=\fopen($logfile, "a+");
         if (!$fp)
         {
             return;
         }
-        fwrite($fp, $string);
-        @fclose($fp);
+        \fwrite($fp, $string);
+        @\fclose($fp);
     }
 
     /**
@@ -70,12 +70,12 @@ abstract class Logfile
 	 */
 	public static function logMySqlError(MySqlException $ex)
 	{
-        $str = self::dateStr()." MySQL Error(".get_class($ex)."): ".$ex->getMessage();
+        $str = self::dateStr()." MySQL Error(".\get_class($ex)."): ".$ex->getMessage();
         if ($ex instanceof MySqlQueryException)
         {
-            $cmd = str_replace("\n", "\r\n                           | ",
+            $cmd = \str_replace("\n", "\r\n                           | ",
                 $ex->getErrousCommand());
-            if (!empty($cmd))
+            if (!\empty($cmd))
             {
                 $str .= "                           | Errous Command:".
                     "\r\n                           | ".$cmd;
@@ -99,9 +99,9 @@ abstract class Logfile
                 self::logMySqlError($ex);
                 return;
         }
-        $str = self::dateStr()." ".get_class($ex).": ";
+        $str = self::dateStr()." ".\get_class($ex).": ";
         $msg = $ex->getMessage();
-        if (empty($msg))
+        if (\empty($msg))
         {
                 $msg = "<No Message>";
         }
@@ -135,7 +135,7 @@ abstract class Logfile
                     $msg .= $traceE["class"] . $traceE["type"];
                 }
                 $msg .= $traceE["function"] . '(';
-                $j = count($traceE["args"]) - 1;
+                $j = \count($traceE["args"]) - 1;
                 for ($i = 0;$i <= $j;$i++)
                 {
                     $msg .= \gettype($traceE["args"][$i]);

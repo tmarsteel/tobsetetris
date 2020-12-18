@@ -38,7 +38,7 @@ class MySqlResult
      */
     public function asArray() {
         //return $this->handle->fetch_array();
-        return mysql_fetch_array($this->handle);
+        return mysqli_fetch_array($this->handle);
     }
     
     /**
@@ -47,7 +47,7 @@ class MySqlResult
      */
     public function asAssocArray() {
         //return $this->handle->fetch_assoc();
-        return mysql_fetch_assoc($this->handle);
+        return mysqli_fetch_assoc($this->handle);
     }
     
     /**
@@ -56,7 +56,7 @@ class MySqlResult
      */
     public function asNumericArray() {
         //return $this->handle->fetch_array(MYSQL_NUM);
-        return mysql_fetch_array($this->handle, MYSQL_NUM);
+        return mysqli_fetch_array($this->handle, MYSQL_NUM);
     }
     
     /**
@@ -65,7 +65,7 @@ class MySqlResult
      */
     public function asObject() {
         //return $this->handle->fetch_object();
-        return mysql_fetch_object($this->handle);
+        return mysqli_fetch_object($this->handle);
     }
     
     /**
@@ -74,7 +74,7 @@ class MySqlResult
      */ 
     public function free() {
         //$this->handle->free();
-        mysql_free_result($this->handle);
+        mysqli_free_result($this->handle);
     }
     
 	/**

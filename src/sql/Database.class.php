@@ -19,17 +19,17 @@ abstract class Database
 	public static function establishConnection()
 	{
 		global $_CONFIG;
-		@$conn = mysql_connect(
+		@$conn = \mysqli_connect(
 			$_CONFIG["database"]["host"],
 			$_CONFIG["database"]["user"],
 			$_CONFIG["database"]["password"]);
-		if (mysql_error($conn))
+		if (\mysqli_error($conn))
 		{
-			throw new ConnectErrorException(mysql_error($conn), mysql_errno($conn));
+			throw new ConnectErrorException(mysqli_error($conn), mysqli_errno($conn));
 		}
-                if (!mysql_select_db($_CONFIG["database"]["base"], $conn))
+                if (!\mysqli_select_db($conn, $_CONFIG["database"]["base"]))
                 {
-                    throw new ConnectErrorException(mysql_error($conn), mysql_errno($conn));
+                    throw new ConnectErrorException(mysqli_error($conn), mysqli_errno($conn));
                 }
 		self::$connection = $conn;
 		Registry::set("db_conn", $conn);
@@ -43,11 +43,11 @@ abstract class Database
 	 */
 	public static function execute($query)
 	{
-            if (self::$connection == null)
-            {
-                    throw new MySqlException("No connection established");
-            }
-            return mysql_query($query, self::$connection);
+        if (self::$connection == null)
+        {
+            throw new MySqlException("No connection established");
+        }
+        return mysqli_query(self::$connection, $query);
 	}
 	
 	/**
@@ -57,7 +57,7 @@ abstract class Database
 	{
 		if (self::$connection != null)
 		{
-			mysql_close(self::$connection);
+			mysqli_close(self::$connection);
 		}
 	}
 	
@@ -72,22 +72,22 @@ abstract class Database
 		{
 			return addslashes($str);
 		}
-		return mysql_real_escape_string($str, self::$connection);
+		return mysqli_real_escape_string(self::$connection, $str);
 	}
 	
 	public static function getLastInsertAI()
 	{
-		return mysql_insert_id(self::$connection);
+		return mysqli_insert_id(self::$connection);
 	}
 	
 	public static function getAffectedRows()
 	{
-		return mysql_affected_rows(self::$connection);
+		return mysqli_affected_rows(self::$connection);
 	}
         
-        public static function getLastError()
-        {
-            return mysql_error(self::$connection);
-        }
+    public static function getLastError()
+    {
+        return mysqli_error(self::$connection);
+    }
 }
 ?>

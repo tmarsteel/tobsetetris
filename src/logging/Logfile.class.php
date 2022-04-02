@@ -75,7 +75,7 @@ abstract class Logfile
         {
             $cmd = \str_replace("\n", "\r\n                           | ",
                 $ex->getErrousCommand());
-            if (!\empty($cmd))
+            if (!empty($cmd))
             {
                 $str .= "                           | Errous Command:".
                     "\r\n                           | ".$cmd;
@@ -101,7 +101,7 @@ abstract class Logfile
         }
         $str = self::dateStr()." ".\get_class($ex).": ";
         $msg = $ex->getMessage();
-        if (\empty($msg))
+        if (empty($msg))
         {
                 $msg = "<No Message>";
         }

@@ -4,6 +4,7 @@ include dirname(__FILE__) . '/../src/default.inc.php';
 use sql\Database;
 use sql\Query;
 use util\json\JSONArray;
+use logging\Logfile;
 
 try
 {
@@ -59,6 +60,7 @@ try
 }
 catch (Exception $ex)
 {
+	Logfile::logException($ex);
     exit("db-error");
 }
 ?>

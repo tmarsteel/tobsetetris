@@ -958,8 +958,8 @@ $(document).ready(function() {
     AUDIO.THEME = document.getElementById("audio-theme");
     
     // setup settings
-    $.settings.getURL = "settings.php";
-    $.settings.setURL = "settings.php";
+    $.settings.getURL = "/settings.php";
+    $.settings.setURL = "/settings.php";
     
     $("#options #button-mute").on('click', function() {
         if (AUDIO.MUTED)

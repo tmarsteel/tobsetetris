@@ -1,11 +1,11 @@
 <?php
-namespace ttetris;
+namespace tmarsteel\dprng;
 
 /**
- * A deterministic, saltable random number generator for 32bit integers. Based on a very
- * simple, custom hash function. The custom function was crafted to make JS
- * implementation easy (as opposed to SHA-256 or similar).
- * The hash function is based on the Rijhandel S-Box and power modulo.
+ * A deterministic, saltable random number generator. Based on a very simple, custom hash function.
+ * The custom function was crafted to make JS implementation easy (as opposed to SHA-256 or similar).
+ * The hash function is based on the Rijhandel S-Box and modulo.
+ * @author Tobias Marstaller <tobias.marstaller@gmail.com>
  */
 class DPRNG
 {
@@ -30,25 +30,25 @@ class DPRNG
         0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94, 0x9b, 0x1e, 0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf,
         0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16
     );
-    
+
     /**
      * The initial state; simply stored for getInitialSalt
      * @var int
      */
     private $initialState = null;
-    
+
     /**
      * The current state; the salt is the initial state
      * @var int
      */
     private $state = 0;
-    
+
     /**
      * The counter. Is XORed with the state prior to each generation step.
      * @var int
      */
     private $counter = 0;
-    
+
     /**
      * @param int $salt The 28bit salt / initial state to use. If omitted, one is
      * obtained through mcrypt_create_iv if available, rand() otherwise.
@@ -70,16 +70,43 @@ class DPRNG
                 $salt = rand(0, 0xFFFFFFF);
             }
         }
-        
+
         $this->initialState = $salt & 0xFFFFFFF;
         $this->state = $this->initialState;
     }
-    
+
+	/**
+	 * Returns a pseudo-random, uniformly distributed <code>double</code> value in
+	 * the range 0 inclusive to 1 exclusive.
+	 * @return double
+	 */
+	public function next() {
+		return ((float) $this->nextInt(0, 0xFFFFFFF)) / ((float) 0xFFFFFFF);
+	}
+
+	/**
+	 * Returns a pseudo-random uniformly distributed <code>double</code> value in
+	 * the range <code>$min</code> inclusive to <code>$max</code> inclusive.
+	 * @param double $min
+	 * @param double $max
+	 * @return double
+	 */
+	public function nextDouble($min, $max)
+	{
+		if ($max < $min)
+		{
+			return $this->nextDouble($max, $min);
+		}
+
+		return $min + $this->next() * ($max - $min);
+	}
+
     /**
-     * Returns a pseudo-random 32 bit integer within the range $min inclusive to $max
-     * inclusive.
+     * Returns a pseudo-random uniformly distributed <code>int<code> value in
+	 * the range <code>$min</code> inclusive to <code>$max</code> <b>inclusive</b>.
      * @param int $min
      * @param int $max
+	 * @return int
      */
     public function nextInt($min, $max)
     {
@@ -91,9 +118,9 @@ class DPRNG
         {
             return $min;
         }
-        
+
         $rangeSize = $max - $min;
-        
+
         $nRequiredBits = min(ceil(log($rangeSize, 2)), 32);
         $result = null;
 
@@ -101,7 +128,7 @@ class DPRNG
         {
             $additionalBits = 32 - $nRequiredBits;
             $mask = pow(2, $additionalBits) - 1;
-            
+
             $result = (($this->advance() << $additionalBits) | ($this->advance() & $mask));
         }
         else
@@ -109,16 +136,33 @@ class DPRNG
             $mask = pow(2, $nRequiredBits) - 1;
             $result = ($this->advance() & $mask);
         }
-        
+
         // for ranges that are not a 2-complement, larger values than $max may
         // be in $result => reduce to the range by dividing by 2
         while ($min + $result > $max) $result = floor($result / 2);
-        
+
         return $result;
     }
-    
+
+	/**
+	 * Returns an array of length <code>$n</code> with each element being
+	 * a pseudo-random and uniformly distributed integer in the range 0 to 255 inclusive.
+	 * @param int $n The number of bytes to generate
+	 * @return int[]
+	 */
+	public function nextBytes($n) {
+		$ar = array();
+		for ($i = 0;$i < $n;$i++)
+		{
+			$ar []= $this->nextInt(0, 255);
+		}
+
+		return $ar;
+	}
+
     /**
-     * Advances the inner state and returns uniformly random 28 bits.
+     * Advances the inner state and returns random 28 bits.
+	 * @return int
      */
     private function advance()
     {

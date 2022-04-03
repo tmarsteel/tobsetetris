@@ -1,0 +1,20 @@
+server {
+	listen 80;
+	root /var/www/tobsetetris/public;
+	index index.php;
+
+	rewrite ^/scores/(\d+)$ /index.php;
+	rewrite ^/(keyconfig|credits)/?$ /index.php;
+	rewrite ^/game/start$ /game.php?mode=start;
+	rewrite "/game/([a-f0-9]{32})/(turn|commit|pause)/?$" /game.php?mode=$2&gid=$1;
+	rewrite ^/highscore/?$ /highscore.php;
+	rewrite ^/inspectrng/?$ /inspect.php;
+	rewrite ^/inspectrng/(init|step)$ /inspect.php?mode=$1;
+
+	location ~* \.php$ {
+		fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+		include fastcgi_params;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		fastcgi_param SCRIPT_NAME $fastcgi_script_name;			
+	}
+}

@@ -677,7 +677,7 @@ function removeFullLines(callback, showEffect)
     
         if ((showEffect == undefined || showEffect) && removedLines > 1)
         {
-            showEffectText("x" + removedLines);
+            showEffectText("×" + removedLines);
         }
     }
     

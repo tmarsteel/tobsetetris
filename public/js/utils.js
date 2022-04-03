@@ -173,3 +173,15 @@ var TransactionQueue = function() {
         }
     };
 };
+
+var HandlingQueue = function(consumerFn) {
+    var currentConsumptionPromise = Promise.resolve();
+
+    this.pushItem = function(item) {
+        currentConsumptionPromise = currentConsumptionPromise.then(function() {
+            return new Promise(function(resolve, _) {
+                consumerFn(item, resolve);
+            })
+        });
+    }
+}

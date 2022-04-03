@@ -318,16 +318,21 @@ function hideMessage(removeContent, callback)
     }
 }
 
-function showEffectText(effectText)
-{
+var effectTextQueue = new HandlingQueue(function(effectText, resolve) {
     var effectLabel = document.createElement("h1");
-    
+
     $("#effect-overlay").html("").append(effectLabel);
     $(effectLabel).css({fontSize: 2, opacity: 0.8, marginTop: 8 * EM1}).html(effectText)
             .animate({fontSize: 3 * EM1, opacity: 0, marginTop: 7 * EM1}, 1000);
+
     window.setTimeout(function() {
         $("#effect-overlay").html("");
+        resolve();
     }, 1000);
+});
+function showEffectText(effectText)
+{
+    effectTextQueue.pushItem(effectText);
 }
 
 function showHighscorePage(nPage)

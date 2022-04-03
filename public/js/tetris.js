@@ -324,14 +324,17 @@ var effectTextQueue = new HandlingQueue(function(effectText, resolve) {
     effectLabel.style.lineHeight = (19 * EM1) + "px";
 
     $("#effect-overlay").html("").append(effectLabel);
-    $(effectLabel).css({fontSize: 0.5 * EM1, opacity: 0.8})
-            .animate({fontSize: 2.4 * EM1, opacity: 0}, 1000);
-
-
-    window.setTimeout(function() {
-        $("#effect-overlay").html("");
-        resolve();
-    }, 1000);
+    $(effectLabel)
+        .css({fontSize: 0.5 * EM1, opacity: 0.8})
+        .animate(
+            {fontSize: 2.4 * EM1, opacity: 0},
+            700,
+            'easeOutQuad',
+            function() {
+                $("#effect-overlay").html("");
+                resolve();
+            }
+        );
 });
 function showEffectText(effectText)
 {

@@ -185,3 +185,10 @@ var HandlingQueue = function(consumerFn) {
         });
     }
 }
+
+function runInNextFrame(callback) {
+    // see https://stackoverflow.com/questions/38631302/requestanimationframe-not-waiting-for-the-next-frame
+    requestAnimationFrame(function() {
+        requestAnimationFrame(callback);
+    });
+}

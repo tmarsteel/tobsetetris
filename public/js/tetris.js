@@ -320,21 +320,28 @@ function hideMessage(removeContent, callback)
 
 var effectTextQueue = new HandlingQueue(function(effectText, resolve) {
     var effectLabel = document.createElement("h1");
-    effectLabel.innerText = effectText;
-    effectLabel.style.lineHeight = (19 * EM1) + "px";
+    $(effectLabel)
+        .text(effectText)
+        .css({
+            fontSize: Math.floor(2.4 * EM1) + "px",
+            opacity: 1,
+            transform: 'scale(0.2)',
+            transition: 'ease-out 700ms'
+        })
 
     $("#effect-overlay").html("").append(effectLabel);
-    $(effectLabel)
-        .css({fontSize: 0.5 * EM1, opacity: 0.8})
-        .animate(
-            {fontSize: 2.4 * EM1, opacity: 0},
-            700,
-            'easeOutQuad',
-            function() {
-                $("#effect-overlay").html("");
-                resolve();
-            }
-        );
+    runInNextFrame(function() {
+        // runInNextFrame assures the browser applies the styling and then applies the transition
+        // for the next change in styling.
+
+        $(effectLabel)
+            .css({opacity: 0, transform: 'scale(1)'});
+
+        window.setTimeout(function() {
+            $("#effect-overlay").html("");
+            resolve();
+        }, 700);
+    });
 });
 function showEffectText(effectText)
 {

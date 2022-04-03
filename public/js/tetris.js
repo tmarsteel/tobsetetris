@@ -320,10 +320,13 @@ function hideMessage(removeContent, callback)
 
 var effectTextQueue = new HandlingQueue(function(effectText, resolve) {
     var effectLabel = document.createElement("h1");
+    effectLabel.innerText = effectText;
+    effectLabel.style.lineHeight = (19 * EM1) + "px";
 
     $("#effect-overlay").html("").append(effectLabel);
-    $(effectLabel).css({fontSize: 2, opacity: 0.8, marginTop: 8 * EM1}).html(effectText)
-            .animate({fontSize: 3 * EM1, opacity: 0, marginTop: 7 * EM1}, 1000);
+    $(effectLabel).css({fontSize: 0.5 * EM1, opacity: 0.8})
+            .animate({fontSize: 2.4 * EM1, opacity: 0}, 1000);
+
 
     window.setTimeout(function() {
         $("#effect-overlay").html("");

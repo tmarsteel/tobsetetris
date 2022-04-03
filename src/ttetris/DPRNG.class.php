@@ -62,9 +62,12 @@ class DPRNG
                 $rand = mcrypt_create_iv(4);
                 $salt = (ord($rand[0]) << 20) | (ord($rand[1]) << 12) | (ord($rand[2]) << 4) | (ord($rand[3]) & 0xF);
             }
+            else if (function_exists("random_int")) {
+                $salt = random_int(0, 0xFFFFFFF);
+            }
             else
             {
-                $salt = rand(0, 0xFFFFFFFF);
+                $salt = rand(0, 0xFFFFFFF);
             }
         }
         

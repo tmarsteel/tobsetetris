@@ -14,7 +14,6 @@ $webroot = $_CONFIG["webroot"];
         <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.js"></script>
         <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.easing.js"></script>
         <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.settings.js"></script>
-        <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.touchSwipe.min.js"></script>
         <script type="text/javascript" src="<?=$webroot;?>js/libs/keyconfig.js"></script>
         <script type="text/javascript" src="<?=$webroot;?>js/utils.js?1498910099"></script>
         <script type="text/javascript" src="<?=$webroot;?>js/bricks.js?1498910099"></script>
@@ -104,7 +103,6 @@ $webroot = $_CONFIG["webroot"];
                 <div id="control-scheme-switcher">
                     <span class="selected" rel="tobsetetris">TTetris</span>
                     <span rel="classic">Classic</span>
-                    <span rel="touch">Touch</span>
                 </div>
                 <div class="control-scheme selected" id="control-scheme-tobsetetris">
                     <div class="control-info">
@@ -159,32 +157,6 @@ $webroot = $_CONFIG["webroot"];
                     <br>
                     <div class="control-info">
                         <div class="key space"></div>
-                        <span>rotate right</span>
-                    </div>
-                </div>
-                <div class="control-scheme" id="control-scheme-touch">
-                    <div class="control-info">
-                        <div class="swipe swipe-pinch-in"></div>
-                        <span>pause</span>
-                    </div>
-                    <div class="control-info">
-                        <div class="swipe swipe-down"></div>
-                        <span>hard drop</span>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="control-info">
-                        <div class="swipe swipe-left"></div>
-                        <span>move left</span>
-                    </div>
-                    <div class="control-info">
-                        <div class="swipe swipe-right"></div>
-                        <span>move right</span>
-                    </div>								
-                    <br>
-                    <br>
-                    <div class="control-info">
-                        <div class="swipe swipe-up"></div>
                         <span>rotate right</span>
                     </div>
                 </div>

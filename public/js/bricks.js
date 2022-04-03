@@ -15,13 +15,9 @@ Brick = function(stoneMatrix0deg, stoneMatrix90deg, stoneMatrix180deg,
         this.dom.innerHTML = "";
         var $dom = $(this.dom);
         $dom.addClass("brick").addClass(color).css({
-            width: stoneMatrix[0].length + "em",
-            height: stoneMatrix.length + "em"
+            width: stoneMatrix[0].length + ".01em",
+            height: stoneMatrix.length + ".01em"
         });
-        /*$dom.addClass("brick").addClass(color).css({
-            width: stoneMatrix[0].length * EM1,
-            height: stoneMatrix.length * EM1
-        });*/
         for (var r = 0;r < stoneMatrix.length;r++)
         {
             var stone;
@@ -61,14 +57,13 @@ Brick = function(stoneMatrix0deg, stoneMatrix90deg, stoneMatrix180deg,
     this.setPosition = function(x, y) {
         this.x = x;
         this.y = y;
-        // $(this.dom).css({marginTop: y + "em", marginLeft: x + "em"});
-        $(this.dom).css({marginTop: y * EM1, marginLeft: x * EM1});
+        $(this.dom).css({marginTop: y + "rem", marginLeft: x + "rem"});
     };
     this.setPositionAnimated = function(x, y)
     {
         this.x = x;
         this.y = y;
-        $(this.dom).animate({marginTop: y * EM1, marginLeft: x * EM1}, START_INTERVAL - LEVEL * 50);
+        $(this.dom).animate({marginTop: y + "rem", marginLeft: x + "rem"}, START_INTERVAL - LEVEL * 50);
     };
     this.moveUp = function(n, animated)
     {

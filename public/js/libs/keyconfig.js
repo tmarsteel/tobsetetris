@@ -96,21 +96,8 @@ KEY_CONFIG.setType = function (type) {
             REV_KEY_CONFIG[ACTION.ROTATE_RIGHT] = "up";
             REV_KEY_CONFIG[ACTION.PAUSE_RESUME] = "esc";
             break;
-        case "touch":
-            // swipe actions integrate more tightly with the game
-            // thus, they are always working and implemented in tetris.js
-            
-            REV_KEY_CONFIG = [];
-            REV_KEY_CONFIG[ACTION.HARD_DROP] = "swipe-down";
-            REV_KEY_CONFIG[ACTION.SOFT_DROP] = undefined;
-            REV_KEY_CONFIG[ACTION.MOVE_LEFT] = "swipe-left";
-            REV_KEY_CONFIG[ACTION.MOVE_RIGHT] = "swipe-right";
-            REV_KEY_CONFIG[ACTION.ROTATE_LEFT] = undefined;
-            REV_KEY_CONFIG[ACTION.ROTATE_RIGHT] = "swipe-up";
-            REV_KEY_CONFIG[ACTION.PAUSE_RESUME] = "pinch-in";
-            break;
         default:
-            throw new Exception("Unknown config " + type);
+            throw new Error("Unknown config " + type);
     }
 
     $.settings("keyconfig", type);

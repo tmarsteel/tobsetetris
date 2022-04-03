@@ -1,10 +1,4 @@
-// keep the sizes up to date
-var EM1 = 12,
-    updateSizes = function() {
-        EM1 = Math.floor($(window).height() / 24);
-        $("body, #gamepanel, #gamepanel-overlay").css({fontSize: EM1, lineHeight: 1});
-    },
-            
+var
     // whether the game is paused
     PAUSED = true,
     // the stone-matrix
@@ -28,7 +22,7 @@ var EM1 = 12,
     // level, increases ever ? points
     LEVEL = 0,
     POINTS = 0,
-    // defines what level starts at how much points
+    // defines what level starts at how many points
     LEVEL_ADVANCE = [0, 500, 2500, 5000, 10000, 25000, 75000, 150000],
     // Brick falling speed, decreases as level increases
     START_INTERVAL = 750,
@@ -323,7 +317,6 @@ var effectTextQueue = new HandlingQueue(function(effectText, resolve) {
     $(effectLabel)
         .text(effectText)
         .css({
-            fontSize: Math.floor(2.4 * EM1) + "px",
             opacity: 1,
             transform: 'scale(0.2)',
             transition: 'ease-out 700ms'
@@ -453,7 +446,7 @@ function showHighscores(data)
     
     if (hasPrevPage) {
         var bt = document.createElement("div");
-        $(bt).addClass("imgbutton prevpage").css("height", 1.2 * EM1).click(function() {
+        $(bt).addClass("imgbutton prevpage").css("height", "1.2rem").click(function() {
             showHighscorePage(data.pageN - 1);
         });
         bt.title = "previous page";
@@ -462,7 +455,7 @@ function showHighscores(data)
     
     if (hasNextPage) {
         var bt = document.createElement("div");
-        $(bt).addClass("imgbutton nextpage").css("height", 1.2 * EM1).click(function() {
+        $(bt).addClass("imgbutton nextpage").css("height", "1.2rem").click(function() {
             showHighscorePage(data.pageN + 1);
         });
         bt.title = "next page";
@@ -863,14 +856,14 @@ function getButton(type)
     {
         case "replay":
             var bt = document.createElement("div");
-            $(bt).addClass("imgbutton replay").css("height", 1.2 * EM1).click(function() {
+            $(bt).addClass("imgbutton replay").css("height", "1.2rem").click(function() {
                 START_GAME();
             });
             bt.title = "play again";
             return bt;
         case "show-start":
             var bt = document.createElement("div");
-            $(bt).addClass("imgbutton showstart").css("height", 1.2 * EM1).click(function() {
+            $(bt).addClass("imgbutton showstart").css("height", "1.2rem").click(function() {
                 showStart();
             });
             bt.title = "show start screen";
@@ -879,84 +872,14 @@ function getButton(type)
 }
 
 $(document).ready(function() {
-    // initially set 1em
-    updateSizes();
-    
     // fill the gamepanel
     addCells(WIDTH * HEIGHT);
-    
-    // key listener
-    var brickSwipeStartXPos = 0;
         
     $(document).keydown(function(evt)
     {
         var action = getAction(evt);
 		
         dispatchAction(action);
-    }).swipe({
-        swipeStatus:function(event, phase, direction, distance , duration , fingerCount) {
-            if (PAUSED || !(CURRENT_FALLING_BRICK))
-                return;
-            
-            if (direction == $.fn.swipe.directions.LEFT || direction == $.fn.swipe.directions.RIGHT)
-            {
-                if (phase === $.fn.swipe.phases.PHASE_START)
-                {
-                    brickSwipeStartXPos = CURRENT_FALLING_BRICK.getPosition().x;
-                    console.log("startpos %o", brickSwipeStartXPos);
-                }
-                
-                
-
-                if(phase === $.fn.swipe.phases.PHASE_MOVE)
-                {
-                    distance = direction == $.fn.swipe.directions.LEFT? -distance : distance;
-
-                    var newXPos = brickSwipeStartXPos + Math.round(distance / EM1);
-
-                    console.log(newXPos);
-
-                    var oldPosition = CURRENT_FALLING_BRICK.getPosition();
-                    
-                    CURRENT_FALLING_BRICK.setPosition(
-                        newXPos,
-                        oldPosition.y
-                    );
-            
-                    if (CURRENT_FALLING_BRICK.collides(GMATRIX))
-                    {
-                        CURRENT_FALLING_BRICK.setPosition(oldPosition.x, oldPosition.y);
-                    }
-                    else
-                    {
-                        updateGhost(CURRENT_FALLING_BRICK, GMATRIX);
-                    }
-                }
-            }
-            else if (phase == $.fn.swipe.phases.PHASE_END)
-            {
-                if (direction == $.fn.directions.UP)
-                {
-                    dispatchAction(ACTION.ROTATE_RIGHT);
-                }
-                else if (direction == $.fn.directions.DOWN)
-                {
-                    dispatchAction(ACTION.HARD_DROP);
-                }
-            }
-        },
-        pinchStatus: function(event, phase, direction, distance , duration , fingerCount, pinchZoom) {
-            if(phase === $.fn.swipe.phases.PHASE_END)
-            {
-                var action = KEY_CONFIG["pinch-" + direction];
-
-                if (action)
-                {
-                    dispatchAction(action);
-                }
-            }
-        },
-        threshold: 2 * EM1
     });
     
     $("#effect-overlay").hide();
@@ -997,6 +920,7 @@ $(document).ready(function() {
             $("#options #button-mute").removeClass("disabled");
         }
     });
+
     var b = new TBrick();
     b.rotateRight();
     $("#options #button-ghost").click(function() {

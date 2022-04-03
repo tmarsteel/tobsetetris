@@ -7,53 +7,55 @@ html, body, * {
 
 html, body {
     background: url(../images/bg1.png);
+    font-size: calc(100vh / 24);
+    line-height: 1;
 }
 
 #main {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -9.5em;
-    margin-left: -8em;
-    width: 16em;
-    height: 19em;
+    margin-top: -9.5rem;
+    margin-left: -8rem;
+    width: 16rem;
+    height: 19rem;
 }
 
 #gameinfo {
     float: left;
-    height: 19em;
-    width: 5em;
-    padding: 0 0 0 1em;
+    height: 19rem;
+    width: 5rem;
+    padding: 0 0 0 1rem;
     margin: 0;
 }
 
 #gameinfo span.label {
-    font-size: 0.5em;
+    font-size: 0.5rem;
 }
 
 #points {
-    font-size: 115%;
+    font-size: 1.15rem;
     width: 100%;
     text-align: justify;
     display: inline-block;
 }
 
 #options {
-    margin-top: .97em;
+    margin-top: .59rem;
 }
 
 #options .option.boolean, .imgbutton {
     display: inline-block;
-    border: 0.1em solid #2a2a2a;
-    border-radius: 0.2em;
+    border: 0.1rem solid #2a2a2a;
+    border-radius: 0.2rem;
     cursor: pointer;
     float: left;
-    margin-right: 0.2em;
+    margin-right: 0.2rem;
 }
 
 #options .option.boolean {
-    width: 2.1em;
-    height: 2.1em;
+    width: 2.1rem;
+    height: 2.1rem;
 }
 
 #options .option.boolean.clear {
@@ -88,15 +90,14 @@ html, body {
 #options #button-ghost .brick {
     font-size: 50%;
     margin: 0.6em auto 0 auto;
-    padding-left: 0.1em;
 }
 #options #button-ghost .brick .stone {
     background: #2a2a2a;
 }
 
 #gamepanel {
-    width: 10em;
-    height: 19em;
+    width: 10rem;
+    height: 19rem;
     padding: 0;
     clear: both;
     background: #555;
@@ -105,8 +106,8 @@ html, body {
 #gamepanel .cell
 {
     background: #555;
-    width: 1em;
-    height: 1em;
+    width: 1rem;
+    height: 1rem;
     display: inline-block;
     float: left;
     margin: 0;
@@ -115,16 +116,16 @@ html, body {
 #gamepanel .gamepanel-overlay
 {
     position: absolute;
-    margin-left: 10.2em;
-    width: 10.2em;
-    height: 19em;
+    margin-left: 10.2rem;
+    width: 10.2rem;
+    height: 19rem;
     margin: 0;
 }
 
 #message-overlay .message
 {
-    width: 10em;
-    height: 19em;
+    width: 10rem;
+    height: 19rem;
     background: rgba(0, 0, 0, 0.65);
 }
 
@@ -145,22 +146,22 @@ html, body {
 
 #message-overlay .message h1 {
     width: 100%;
-    font-size: 2.2em;
+    font-size: 2.2rem;
     line-height: 1.1;
 }
 
 #message-overlay .message .content {
-    padding: 0 0.3em 0 0.3em;
+    padding: 0 0.3rem 0 0.3rem;
 }
 
 
 /* GAME OVER */
 #message-overlay input[type="text"] {
     width: 90%;
-    border: 0.1em solid white;
+    border: 0.1rem solid white;
     background: rgba(0, 0, 0, 0.5);
-    border-radius: 0.2em;
-    font-size: 1.2em;
+    border-radius: 0.2rem;
+    font-size: 1.2rem;
     color: #ccc;
 }
 
@@ -171,19 +172,19 @@ html, body {
 }
 
 #message-overlay input[type="button"] {
-    padding: 0.2em 0.7em;
-    border: 0.1em solid #ccc;
+    padding: 0.2rem 0.7rem;
+    border: 0.1rem solid #ccc;
     background: none;
     width: 80%;
     color: #ccc;
-    font-size: 0.75em;
-    border-radius: 0.2em;
+    font-size: 0.75rem;
+    border-radius: 0.2rem;
     cursor: pointer;
-    margin: 0.1em;
+    margin: 0.1rem;
 }
 
 #message-overlay input[type="button"]:focus {
-    border: .2em solid #FFF;
+    border: .2rem solid #FFF;
     margin: 0;
     color: #FFF;
 }
@@ -191,29 +192,29 @@ html, body {
 /* HIGHSCORES */
 .highscores {
     width: 100%;
-    min-height: 12em;
-    padding: 0 0.3em 0 0.3em;
+    min-height: 12rem;
+    padding: 0 0.3rem 0 0.3rem;
     box-sizing: border-box;
 }
 .highscores table {
-    font-size: 70%;
+    font-size: 60%;
     width: 100%;
     padding: 0;
-    margin: .4em 0;
+    margin: .4rem 0;
 }
 
 .highscores td, .highscores th {
     text-align: left !important;
-    height: 1em;
-    padding: 0.15em;
+    height: 0.68rem;
+    padding: 0.15rem;
 }
 
 .highscores table tr th:first-child {
-    width: 2em;
+    width: 2rem;
 }
 .highscores table tr th:last-child,
 .highscores table tr td:last-child {
-    width: 4em;
+    width: 4rem;
     text-align: right !important;
 }
 
@@ -229,7 +230,7 @@ html, body {
 }
 
 .highscores + .imgbutton {
-    margin: 0 0.5em 0 0.3em;
+    margin: 0 0.5rem 0 0.3rem;
 }
 
 #effect-overlay h1 {
@@ -238,13 +239,14 @@ html, body {
     justify-content: center;
     text-align: center;
     height: 100%;
+    font-size: 2.4rem;
 }
 
 #copyright {
     position: absolute;
     top: 100%;
-    right: 1em;
-    margin-top: -1.5em;
+    right: 1rem;
+    margin-top: -1.5rem;
     font-size: 40%;
     color: #2a2a2a;
 }
@@ -259,11 +261,12 @@ html, body {
 .brick-preview {
     font-size: 70%;
     display: block;
-    width: 5em;
-    height: 5em;
-    padding: 1em;
+    width: 5rem;
+    height: 5rem;
+    padding: 1rem;
     background: #555;
-    margin-bottom: 1.3em;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
 }
 
 .brick-preview .brick-i, .brick-preview .brick-l, .brick-preview .brick-rl,
@@ -273,15 +276,15 @@ html, body {
 }
 
 .brick-preview .brick-i {
-    margin-top: 0.5em;
+    margin-top: 0.2em;
 }
 
 .brick-preview .brick-l, .brick-preview .brick-rl {
-    margin-top: 1em;
+    margin-top: 0.6em;
 }
 .brick-preview .brick-t, .brick-preview .brick-z, .brick-preview .brick-s,
 .brick-preview .brick-square {
-    margin-top: 1.5em;
+    margin-top: 1.2em;
 }
 
 .brick.ghost {
@@ -320,17 +323,17 @@ html, body {
     visibility: hidden;
 }
 
-#gamepanel .cell.pendingRemoval {
+#gamepanel .cell.pendingRremoval {
     background-color: #EEE;
 }
 
 .imgbutton {
-    width: 1.2em;
-    height: 1.2em;
+    width: 1.2rem;
+    height: 1.2rem;
     float: left;
     border-color: #ccc;
     cursor: pointer;
-    margin-left: .3em;
+    margin-left: .3rem;
 }
 
 .imgbutton.replay {
@@ -363,7 +366,7 @@ html, body {
 
 input[type="button"] + .imgbutton {
     display: inline-block;
-    margin: 0 0 0 0.8em;
+    margin: 0 0 0 0.8rem;
     float: left;
 }
 
@@ -373,20 +376,20 @@ input[type="button"] + .imgbutton {
 
 /* START SCREEN */
 #control-scheme-switcher {
-	border: 0.1em solid white;
-	border-radius: 0.2em;
-	height: 1em;
+	border: 0.1rem solid white;
+	border-radius: 0.2rem;
+	height: 1rem;
 	width: 70%;
-	margin: 0.75em auto;
+	margin: 0.75rem auto;
 }
 
 #control-scheme-switcher span {
-	font-size: 0.5em;
+	font-size: 0.5rem;
 	display: block;
 	float: left;
-	width: 33.3%;
+	width: 50%;
 	height: 2em;
-	line-height: 2em;
+	line-height: 2;
 	color: white;
 	font-weight: bold;
 	cursor: pointer;
@@ -409,15 +412,15 @@ input[type="button"] + .imgbutton {
 
 .control-info {
     display: inline-block;
-    width: 4em;
+    width: 4rem;
 }
 
 .key, .control-info .swipe {
-    width: 1.3em;
-    height: 1.3em;
+    width: 1.3rem;
+    height: 1.3rem;
     display: inline-block;
-    border: 0.1em solid white;
-    border-radius: 0.2em;
+    border: 0.1rem solid white;
+    border-radius: 0.2rem;
     background-size: 70% 70%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -425,7 +428,7 @@ input[type="button"] + .imgbutton {
 
 .swipe {
     border: none;
-    margin: 0.1em;
+    margin: 0.1rem;
     background-size: 100%;
 }
 
@@ -442,7 +445,7 @@ input[type="button"] + .imgbutton {
     background-image: url(../images/arrow_right.svg);
 }
 .key.space {
-    width: 2.6em;
+    width: 2.6rem;
     background-image: url(../images/space.svg);
 }
 .key.esc span {
@@ -475,12 +478,12 @@ input[type="button"] + .imgbutton {
     display: block;
 }
 
-.template {
+.tremplate {
     display: none;
 }
 
 .credits {
-    font-size: .5em;
+    font-size: .5rem;
 }
 
 .credits a {
@@ -493,6 +496,6 @@ input[type="button"] + .imgbutton {
     color: #00ABEF !important;
 }
 
-.credits input[type="button"] {
-    font-size: 1.5em !important;
+.template {
+    display: none;
 }

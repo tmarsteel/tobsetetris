@@ -6,7 +6,7 @@ html, body, * {
 }
 
 html, body {
-    background: url(../public/images/bg1.png);
+    background: url(../images/bg1.png);
 }
 
 #main {
@@ -74,14 +74,14 @@ html, body {
 }
 
 #options #button-mute {
-    background-image: url(../public/images/audio_unmuted.svg);
+    background-image: url(../images/audio_unmuted.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 55% 55%;
 }
 
 #options #button-mute.disabled {
-    background-image: url(../public/images/audio_muted.svg);
+    background-image: url(../images/audio_muted.svg);
     background-size: 65% 65%;
 }
 
@@ -291,32 +291,7 @@ html, body {
     display: inline-block;
     float: left;
 }
-/*.brick .stone, #gamepanel .cell
-{
-    background-size: contain;
-    background-repeat: no-repeat;
-}*/
-/*.brick.blue .stone, #gamepanel .cell.blue {
-    background-image: url(../images/stone_blue.png);
-}
-.brick.green .stone, #gamepanel .cell.green {
-    background-image: url(../images/stone_green.png);
-}
-.brick.magenta .stone, #gamepanel .cell.magenta {
-    background-image: url(../images/stone_magenta.png);
-}
-.brick.orange .stone, #gamepanel .cell.orange {
-    background-image: url(../images/stone_orange.png);
-}
-.brick.red .stone, #gamepanel .cell.red {
-    background-image: url(../images/stone_red.png);
-}
-.brick.turquoise .stone, #gamepanel .cell.turquoise {
-    background-image: url(../images/stone_turquoise.png);
-}
-.brick.yellow .stone, #gamepanel .cell.yellow {
-    background-image: url(../images/stone_yellow.png);
-}*/
+
 .brick.blue .stone, #gamepanel .cell.blue {
     background-color: #005AF4;
 }
@@ -356,28 +331,28 @@ html, body {
 }
 
 .imgbutton.replay {
-    background-image: url(../public/images/replay.svg);
+    background-image: url(../images/replay.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 80% 80%;
 }
 
 .imgbutton.showstart {
-    background-image: url(../public/images/home.svg);
+    background-image: url(../images/home.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 67.5% 67.5%;
 }
 
 .imgbutton.nextpage {
-    background-image: url(../public/images/nextpage.svg);
+    background-image: url(../images/nextpage.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 120% 120%;
 }
 
 .imgbutton.prevpage {
-    background-image: url(../public/images/prevpage.svg);
+    background-image: url(../images/prevpage.svg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 100% 100%;
@@ -452,20 +427,20 @@ input[type="button"] + .imgbutton {
 }
 
 .key.down {
-    background-image: url(../public/images/arrow_down.svg);
+    background-image: url(../images/arrow_down.svg);
 }
 .key.up {
-    background-image: url(../public/images/arrow_up.svg);
+    background-image: url(../images/arrow_up.svg);
 }
 .key.left {
-    background-image: url(../public/images/arrow_left.svg);
+    background-image: url(../images/arrow_left.svg);
 }
 .key.right {
-    background-image: url(../public/images/arrow_right.svg);
+    background-image: url(../images/arrow_right.svg);
 }
 .key.space {
     width: 2.6em;
-    background-image: url(../public/images/space.svg);
+    background-image: url(../images/space.svg);
 }
 .key.esc span {
     font-size: 50%;
@@ -473,22 +448,22 @@ input[type="button"] + .imgbutton {
     margin-top: 0.8em;
 }
 .swipe.swipe-up {
-    background-image: url(../public/images/swipe-up.svg);
+    background-image: url(../images/swipe-up.svg);
 }
 .swipe.swipe-down {
-    background-image: url(../public/images/swipe-down.svg);
+    background-image: url(../images/swipe-down.svg);
 }
 .swipe.swipe-left {
-    background-image: url(../public/images/swipe-left.svg);
+    background-image: url(../images/swipe-left.svg);
 }
 .swipe.swipe-right {
-    background-image: url(../public/images/swipe-right.svg);
+    background-image: url(../images/swipe-right.svg);
 }
 .swipe.swipe-pinch-out {
-    background-image: url(../public/images/pinch-out.svg);
+    background-image: url(../images/pinch-out.svg);
 }
 .swipe.swipe-pinch-in {
-    background-image: url(../public/images/pinch-in.svg);
+    background-image: url(../images/pinch-in.svg);
 }
 
 .control-info span {

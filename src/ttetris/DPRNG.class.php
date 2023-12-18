@@ -1,5 +1,5 @@
 <?php
-namespace tmarsteel\dprng;
+namespace ttetris;
 
 /**
  * A deterministic, saltable random number generator. Based on a very simple, custom hash function.

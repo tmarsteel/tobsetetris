@@ -19,7 +19,7 @@ abstract class Database
 	public static function establishConnection()
 	{
 		global $_CONFIG;
-		@$conn = \mysqli_connect(
+	  $conn = \mysqli_connect(
 			$_CONFIG["database"]["host"],
 			$_CONFIG["database"]["user"],
 			$_CONFIG["database"]["password"]);

@@ -2,14 +2,14 @@
 $_CONFIG=array (
     'database' => array (
         'host' => 'localhost',
-        'user' => 'root',
-        'password' => '',
-        'base' => 'tetris'
+        'user' => 'tetris',
+        'password' => 'tetris',
+        'base' => 'tetris',
     ),
     'logfile' => array (
-        'error' => dirname(__FILE__) . '/../logs/errors.log'
+        'error' => '/var/log/tetris-error.log',
     ),
-    'webroot' => 'http://localhost/Tetris'
+    'webroot' => '/',
 );
 define('TBL_PRFX', '');
 ?>

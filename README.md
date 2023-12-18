@@ -1,34 +1,26 @@
 # TTetris
 An HTML5 Tetris game with online scoreboard and cheating protection.
 
-## Server requirements
+## Installing
 
-* MySQL Server 5.6
-* PHP 5.6
-  * Session support
-  * mysql extension
-* Apache Webserver
-  * `AllowOverride All`
-  * You can use any other but you will have to port the `.htaccess` files.
+This project is built on ancient libraries and tools (PHP 5 with mysqli, apache server)
+and thus probably impossible to operate safely on a public-facing box.  
+Hence this project has a Docker setup so you can run it on your machine easily:
 
+To build the image:
+```bash
+./set-up-dockerized.sh
+```
 
-## How to set up
+This starts the container with a random port binding and opens the
+localhost-url in your browser:
+```bash
+./start-dockerized.sh
+```
 
-1. Checkout this repo into a directory (say `/var/www/tetris` for the purpose of this
-readme) and point an Apache VHost either to `/var/www/tetetris` or `/var/www/ttetris/public`.
-2. Setup a database user for the app
-3. Log into the MySQL server, create a schema and grant SELECT, INSERT, UPDATE, DELETE to the
-   user you just created
-4. Create the highscore table with this statement:
+Should you really want to host this publicly let the Dockerfile be your guide on
+the things you need to prepare.
 
-       CREATE TABLE `highscore` (
-         `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-         `name` varchar(12) NOT NULL,
-         `score` int(10) NOT NULL,
-         `submitted_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-         `bricksequence` int(8) NOT NULL,
-         PRIMARY KEY (`id`),
-         KEY `score` (`score`)
-       ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
-       
-3. Put the database credentials and schema name into `src/config.inc.php`
+### Dependencies
+
+docker

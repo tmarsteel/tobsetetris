@@ -12,4 +12,6 @@ $_CONFIG=array (
     'webroot' => '/',
 );
 define('TBL_PRFX', '');
+ini_set("session.gc_maxlifetime", 60 * 60);
+ini_set("session.cookie_lieftime", 60 * 60);
 ?>

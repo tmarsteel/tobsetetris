@@ -15,9 +15,9 @@ $webroot = $_CONFIG["webroot"];
         <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.easing.js"></script>
         <script type="text/javascript" src="<?=$webroot;?>js/libs/jquery.settings.js"></script>
         <script type="text/javascript" src="<?=$webroot;?>js/libs/keyconfig.js"></script>
-        <script type="text/javascript" src="<?=$webroot;?>js/utils.js?1498910099"></script>
-        <script type="text/javascript" src="<?=$webroot;?>js/bricks.js?1498910099"></script>
-        <script type="text/javascript" src="<?=$webroot;?>js/tetris.js?1498910099"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/utils.js?<?=time()?>"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/bricks.js?<?=time()?>"></script>
+        <script type="text/javascript" src="<?=$webroot;?>js/tetris.js?<?=time()?>"></script>
         
         <link href='http://fonts.googleapis.com/css?family=Ubuntu:400' rel='stylesheet' type='text/css'>
         <link href="<?=$webroot;?>css/styles.css" type="text/css" rel="stylesheet" media="screen" />

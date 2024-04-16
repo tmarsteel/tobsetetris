@@ -127,6 +127,14 @@ html, body {
     width: 10rem;
     height: 19rem;
     background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#message-overlay .message-content 
+{
+    display: flex-item;
 }
 
 #message-overlay .message, #message-overlay .message * {
@@ -153,7 +161,6 @@ html, body {
 #message-overlay .message .content {
     padding: 0 0.3rem 0 0.3rem;
 }
-
 
 /* GAME OVER */
 #message-overlay input[type="text"] {

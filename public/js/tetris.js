@@ -244,17 +244,23 @@ function nextBrick()
 
 function showMessage(heading, content, callback)
 {
-    var d = document.createElement("div");
-    $(d).addClass("message").css("opacity", 0);
+    var messageElement = document.createElement("div");
+    $(messageElement).addClass("message").css({
+    	opacity: 0,
+    	transitionDuration: "" + START_INTERVAL + "ms"
+    });
+    var messageContentElement = document.createElement("div");
+    $(messageContentElement).addClass("message-content");
+    messageElement.appendChild(messageContentElement);
 
-    $("#message-overlay").html("").show().append(d);
+    $("#message-overlay").html("").show().append(messageElement);
 
     var h = 0;
     if (heading)
     {
         var h1 = document.createElement("h1");
         $(h1).html(heading);
-        d.appendChild(h1);
+        messageContentElement.appendChild(h1);
         h += $(h1).height();
     }
 
@@ -267,21 +273,24 @@ function showMessage(heading, content, callback)
             content = _c;
         }
         $(content).addClass("content");
-        d.appendChild(content);
+        messageContentElement.appendChild(content);
         h += $(content).height();
     }
-    $(d).animate({opacity: 1}, START_INTERVAL, "easeInCubic");
-    $(h1).animate({paddingTop: $(d).height() / 2 - h / 2}, START_INTERVAL, "easeOutCubic");
+    $(messageElement).css("opacity", 1);
     $("#effect-overlay").hide();
 
     $("#message-overlay").find("input, button, a[href]").each(function(i, e) {
         $(this).attr("tabindex", i + 1);
     });
 
-    if (callback != undefined)
-    {
-        window.setTimeout(callback, START_INTERVAL);
-    }
+    window.setTimeout(function() {
+        $(messageElement).css({
+            transitionDuration: "0ms"
+        });
+        if (callback) {
+            callback();
+        }
+    }, START_INTERVAL);
 }
 
 function hideMessage(removeContent, callback)

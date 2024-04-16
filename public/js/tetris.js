@@ -51,7 +51,7 @@ var
 function applyBrick(brick, GMATRIX)
 {
     brick.applyTo(GMATRIX);
-            
+
     updateUI(GMATRIX);
     var isGameOver = false;
     var removedLines = removeFullLines(function() {
@@ -111,10 +111,10 @@ function applyBrick(brick, GMATRIX)
         {
             additionalPoints = Math.pow(5, removedLines);
         }
-        
+
         additionalPoints *= COMBO_STREAK;
     }
-    
+
     POINTS += additionalPoints;
 
     $.each(LEVEL_ADVANCE, function(level, reqPoints)
@@ -135,16 +135,16 @@ function setFallingBrick(brick)
     CURRENT_FALLING_BRICK = brick;
     $("#play-overlay").html("").append(brick.getDOMElement());
     brick.setRotation(0);
-    
+
     FALLING_TIMEOUT = window.setInterval(function() {
         if (!CURRENT_FALLING_BRICK.tryMoveDown(1, GMATRIX))
-        {            
+        {
             applyBrick(CURRENT_FALLING_BRICK, GMATRIX);
         }
         updateUI(GMATRIX);
         updateGhost(CURRENT_FALLING_BRICK, GMATRIX);
     }, START_INTERVAL - LEVEL * 50);
-    
+
     window.setTimeout(function() {
         updateGhost(brick, GMATRIX);
     }, 10);
@@ -155,14 +155,14 @@ function updateTextUI()
     $("#level").html(LEVEL + 1);
 
     $("#points").html(formatPoints(POINTS));
-    
+
     $("#nextbrick1").html("");
     if (NEXT_BRICK_1 != null)
     {
         $("#nextbrick1").append(NEXT_BRICK_1.getDOMElement());
     }
-    
-    $("#nextbrick2").html("");   
+
+    $("#nextbrick2").html("");
     if (NEXT_BRICK_2 != null)
     {
         $("#nextbrick2").append(NEXT_BRICK_2.getDOMElement());
@@ -219,26 +219,26 @@ function updateGhost(forBrick, GMATRIX)
     }
     var gBrick = forBrick.clone();
     gBrick.setGhostBrick(true);
-    
+
     // fall down.
     while (gBrick.tryMoveDown(1, GMATRIX));
-    
+
     $("#ghost-overlay").append(gBrick.getDOMElement());
 }
 
 function nextBrick()
 {
     window.clearTimeout(FALLING_TIMEOUT);
-    
+
     $("#play-overlay, #ghost-overlay").html("");
-    
+
     var nextFalling = NEXT_BRICK_1;
     nextFalling.setPosition(Math.round(5 - nextFalling.getWidth() / 2), 0);
-    
+
     NEXT_BRICK_1 = NEXT_BRICK_2;
     NEXT_BRICK_2 = getNewBrickByType(BRICK_SEQUENCE_GENERATOR.nextType());
     updateTextUI();
-    
+
     setFallingBrick(nextFalling);
 }
 
@@ -246,9 +246,9 @@ function showMessage(heading, content, callback)
 {
     var d = document.createElement("div");
     $(d).addClass("message").css("opacity", 0);
-    
+
     $("#message-overlay").html("").show().append(d);
-    
+
     var h = 0;
     if (heading)
     {
@@ -273,11 +273,11 @@ function showMessage(heading, content, callback)
     $(d).animate({opacity: 1}, START_INTERVAL, "easeInCubic");
     $(h1).animate({paddingTop: $(d).height() / 2 - h / 2}, START_INTERVAL, "easeOutCubic");
     $("#effect-overlay").hide();
-    
+
     $("#message-overlay").find("input, button, a[href]").each(function(i, e) {
         $(this).attr("tabindex", i + 1);
     });
-    
+
     if (callback != undefined)
     {
         window.setTimeout(callback, START_INTERVAL);
@@ -294,7 +294,7 @@ function hideMessage(removeContent, callback)
     {
         window.setTimeout(function() {
             $("#message-overlay").html("");
-            
+
             if (callback)
             {
                 callback();
@@ -363,14 +363,14 @@ function showHighscorePage(nPage)
 function showHighscores(data)
 {
     if (data == undefined)
-    {   
+    {
         showHighscorePage(1);
         return;
     }
-    
+
     var perPage = 13;
     history.pushState(null, null, '/scores/' + data.pageN);
-    
+ 
     var container1 = document.createElement("div"),
         container2 = document.createElement("div"),
         hstable = document.createElement("table");
@@ -416,10 +416,10 @@ function showHighscores(data)
 
         hstable.appendChild(tr);
     });
-    
+
     var hasNextPage = data.scores.length >= perPage;
     var hasPrevPage = data.pageN > 1;
-    
+
     // fill empty places in the highscore
     for (var i = 0;i < perPage - data.scores.length;i++)
     {
@@ -437,13 +437,13 @@ function showHighscores(data)
 
         hstable.appendChild(tr);
     }
-    
+
     container2.appendChild(hstable);
     container1.appendChild(container2);
-    
+
     container1.appendChild(getButton("show-start"));
     container1.appendChild(getButton("replay"));
-    
+
     if (hasPrevPage) {
         var bt = document.createElement("div");
         $(bt).addClass("imgbutton prevpage").css("height", "1.2rem").click(function() {
@@ -452,7 +452,7 @@ function showHighscores(data)
         bt.title = "previous page";
         container1.appendChild(bt);
     }
-    
+
     if (hasNextPage) {
         var bt = document.createElement("div");
         $(bt).addClass("imgbutton nextpage").css("height", "1.2rem").click(function() {
@@ -461,11 +461,10 @@ function showHighscores(data)
         bt.title = "next page";
         container1.appendChild(bt);
     }
-    
     var br = document.createElement("br");
     br.style.clear = "both";
     container1.appendChild(br);
-    
+
     br = document.createElement("br");
     br.style.clear = "both";
     container1.appendChild(br);
@@ -485,9 +484,8 @@ function START_GAME()
     TURN_QUEUE = new TransactionQueue();
     N_PLACED_BRICKS = 0;
     updateTextUI();
-    
     GMATRIX = [];
-    
+
     for (var r = 0;r <= HEIGHT;r++)
     {
         GMATRIX[r] = [];
@@ -496,36 +494,36 @@ function START_GAME()
             GMATRIX[r][c] = 0;
         }
     }
-    
+
     updateUI(GMATRIX);
-    
+
     hideMessage(true, function() {
         showMessage(' ', 'Connecting to game server<span id="startGameProgress"></span>');
-    
+
         var gameSaltLoaded = false,
             gameSaltLoadingCounter = 0;
         var gameSaltLoadingAnimationInterval = window.setInterval(function() {
             if (gameSaltLoaded == true && gameSaltLoadingCounter > 2)
             {
                 window.clearInterval(gameSaltLoadingAnimationInterval);
-                
+
                 NEXT_BRICK_1 = getNewBrickByType(BRICK_SEQUENCE_GENERATOR.nextType());
                 NEXT_BRICK_2 = getNewBrickByType(BRICK_SEQUENCE_GENERATOR.nextType());
                 updateTextUI();
-                
+
                 hideMessage(true, function() {
                     showEffectText("START!");
                         window.setTimeout(function() {
                         nextBrick();
                     }, 500);
-                });                
+                });
             }
             else
             {
                 $("#startGameProgress").html('.'.repeat(++gameSaltLoadingCounter % 4));
             }
         }, 500);
-        
+
         // notify the server and obtain the game ID
         $.ajax({
             url: '/game/start',
@@ -1061,7 +1059,7 @@ function syncTurnQueue()
         syncTurnQueue().then(function(points) {
             if (!TURN_QUEUE.hasItems())
             {
-                POINTS = points;
+                POINTS = Math.max(POINTS, points);
                 updateTextUI();
             }
             
